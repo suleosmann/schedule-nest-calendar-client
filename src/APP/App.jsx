@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className='root'>
-      <Component/>
+      {/* <Component/> */}
       <Navbar2 />
       <Sidenav />
       

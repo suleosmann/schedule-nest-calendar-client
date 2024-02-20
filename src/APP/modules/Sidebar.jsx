@@ -1,44 +1,41 @@
 
 
 import { Sidebar } from 'flowbite-react';
-import { BiBuoy } from 'react-icons/bi';
-import { HiArrowSmRight, HiCalendar,  HiShoppingBag, HiTable, HiUser, HiLogout, HiOutlinePlus } from 'react-icons/hi';
+import { HiCalendar,   HiUser, HiLogout, HiOutlinePlus } from 'react-icons/hi';
 
 function Sidenav() {
   return (
-    <Sidebar aria-label="Sidebar with content separator example">
+    <Sidebar aria-label="Sidebar" className=' h-full '>
       <Sidebar.Items>
-        <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={HiOutlinePlus}>
+        <Sidebar.ItemGroup className=' my-5 c-8 ' >
+          <Sidebar.Item className = ' h-20' href="#" icon={HiOutlinePlus}>
             Create Event
           </Sidebar.Item>
 
-          <Sidebar.Item href="#" icon={HiCalendar}>
+          <Sidebar.Item className = 'h-25' href="#" icon={HiCalendar}>
             Calender
           </Sidebar.Item>
 
-          <Sidebar.Item href="#" icon={HiUser}>
+          <Sidebar.Item className = 'h-25' href="#" icon={HiUser}>
             Profile
           </Sidebar.Item>
+        </Sidebar.ItemGroup>
 
-
-          <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" >
+        <Sidebar.ItemGroup className='my-18 '>
+          <span className="self-center whitespace-nowrap text-l font-semibold dark:text-white">View</span>
+          <Sidebar.Item className = 'h-14 border border-solid border-gray-900 rounded border-opacity-75' href="#" >
             Day
           </Sidebar.Item>
-          <Sidebar.Item href="#" >
+          <Sidebar.Item className = 'h-14 border border-solid border-gray-900 rounded border-opacity-75' href="#" >
             Week
           </Sidebar.Item>
-          <Sidebar.Item href="#" >
+          <Sidebar.Item className = 'h-14 border border-solid border-gray-900 rounded border-opacity-75' href="#" >
             Month
           </Sidebar.Item>
         </Sidebar.ItemGroup>
 
-
-         
-        </Sidebar.ItemGroup>
-        <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={HiLogout}>
+        <Sidebar.ItemGroup  >
+          <Sidebar.Item className='my-48 border-white bg-yellow-300 ' href="#" icon={HiLogout}>
             Log Out
           </Sidebar.Item>
         </Sidebar.ItemGroup>
