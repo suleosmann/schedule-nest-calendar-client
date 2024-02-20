@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700;800;900&display=swap");
+
+:root {
+  --dark-one: #000000;
+  --dark-two: #7a7a7a;
+  --dark-three: #0f0c16;
+  --main-color: #CFDEB5;
+  --secondary-color: #ffd487;
+  --light-one: #fff;
+  --light-two: #f9fafb;
+  --light-three: #f6f7fb;
+  --main-color-2: #bdd28e;
+  --light-blue: #42bfe4;
+}
+
+body,
+button {
+  font-family: "Poppins", sans-serif;
+}
+
+
+.navbar{
+    height: 5vh;
+    display: flex;
+    padding: 1vh 1vh;
+    overflow:hidden;
+    background-color: var(--main-color);
+    justify-content: space-between;
+    font-family: "Poppins", sans-serif;
+    line-height: auto;
+    font-size: medium;
+    text-align: center;
+   
+}
+
+.right-nav a{
+    text-align: center;
+    padding: 0.5vh 1vh;
+    text-decoration: none;
+    justify-content: center;
+
+}
+
