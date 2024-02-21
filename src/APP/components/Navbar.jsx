@@ -5,7 +5,7 @@ function Component() {
 
   const handleGetStarted = (e) =>{
     e.preventDefault();
-    window.location.href = '/'; 
+    window.location.href = '/authentication'; 
     console.log("clicked")
   }
 

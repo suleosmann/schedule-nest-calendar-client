@@ -17,19 +17,18 @@ export default function AllRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home />}>
+        <Route path='/' element={<Home />}/>
 
-          <Route path='authentication' element={<Authentication />}>
-            <Route index element={<Login />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="updatepwd" element={<UpdatePwd />} />
-          </Route>
+        <Route path='/authentication' element={<Authentication />}>
+          <Route index element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="updatepwd" element={<UpdatePwd />} />
+        </Route>
 
-          <Route path='calendar' element={<Calendar />} />
+        <Route path='calendar' element={<Calendar />} />
 
-          <Route path='dashboard' element={<Dashboard />}>
-            <Route path='profile' element={<Profile />} />
-          </Route>
+        <Route path='dashboard' element={<Dashboard />}>
+          <Route path='profile' element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>
