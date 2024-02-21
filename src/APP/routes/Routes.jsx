@@ -12,28 +12,36 @@ import Dashboard from './../modules/Home'
 import Calendar from './../modules/calendar'
 
 import Profile from './../modules/profile/VeiwProfile'
+import authentication from './../modules/authentication/authentication';
 
 export default function Routes() {
   return (
     <Router>
       <Routes>
-        <Route path='/Home' element={Home}>
+        <Route path='/Home' element={<Home/>}>
 
-          <Route path='/authentication' element={}>
+          <Route path='/authentication' element={<authentication/>}>
+            <Route path="" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/updatepwd" element={<UpdatePwd />} />
+          </Route>
+
+          <Route path='/Calendar' element={<Calendar/>}>
           </Route>
 
           <Route path='' element={}>
           </Route>
 
-          <Route path='' element={}>
+          <Route path='/dashboard' element={<Dashboard/>}>
+            <Route path='/profile' element={<Profile/>}>
+              <Route path="" element={<Profile />} />
+              <Route path="" element={<Profile />} />
+              <Route path="" element={<Profile />} />
+            </Route>
+
           </Route>
 
-          <Route path='/dashboard' element={Dashboard}>
-          </Route>
-
-          <Route path='/profile' element={Profile}>
-          </Route>
-
+        
         </Route>
       </Routes>
     </Router>

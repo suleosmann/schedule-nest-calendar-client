@@ -1,6 +1,7 @@
 import Component from './components/Navbar'
 import NavComponent from './modules/Navbar'
 import Sidenav from './modules/Sidebar'
+import Authentification from './modules/authentication/authentication'
 import SignUpForm from './modules/authentication/Signup'
 import LoginForm from './modules/authentication/Login'
 import UpdatePwd from './modules/authentication/updatePwd'
@@ -16,9 +17,8 @@ function App() {
       {/* <NavComponent/> */}
       {/* <Navbar2 />
       <Sidenav /> */}
-     {/*  <SignUpForm />*/} 
-      {/*  <LoginForm />*/} 
-       <UpdatePwd />
+      <Authentification />
+       
       
     </div>
   )
