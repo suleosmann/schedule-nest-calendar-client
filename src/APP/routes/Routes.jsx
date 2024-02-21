@@ -1,14 +1,14 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from './../modules/Home'
+import Home from '../modules/landing/Home'
 
 import Authentication from './../modules/authentication/authentication'
 import Login from './../modules/authentication/Login'
 import Signup from './../modules/authentication/Signup'
 import UpdatePwd from './../modules/authentication/updatePwd'
 
-import Dashboard from './../modules/Home'
+import Dashboard from '../modules/landing/Home'
 import Calendar from './../modules/calendar/calendar'
 
 import Profile from './../modules/profile/VeiwProfile'
@@ -18,8 +18,9 @@ export default function AllRoutes() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />}>
+
           <Route path='authentication' element={<Authentication />}>
-            <Route path="login" element={<Login />} />
+            <Route index element={<Login />} />
             <Route path="signup" element={<Signup />} />
             <Route path="updatepwd" element={<UpdatePwd />} />
           </Route>

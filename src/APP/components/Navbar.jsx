@@ -1,8 +1,14 @@
-
-
 import { Button, Navbar } from 'flowbite-react';
 
+
 function Component() {
+
+  const handleGetStarted = (e) =>{
+    e.preventDefault();
+    window.location.href = '/'; 
+    console.log("clicked")
+  }
+
   return (
     <Navbar fluid rounded className="bg-green-200 " >
       <Navbar.Brand href="https://flowbite-react.com">
@@ -10,11 +16,11 @@ function Component() {
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">ScheduleNest</span>
       </Navbar.Brand>
       <div className="flex md:order-2">
-        <Button outline gradientDuoTone="greenToBlue">Get started</Button>
+        <Button href="authentication" outline onClick={handleGetStarted} gradientDuoTone="greenToBlue">Get started</Button>
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="#" active>
+        <Navbar.Link href="Home" active>
           Home
         </Navbar.Link>
         <Navbar.Link href="#">Features</Navbar.Link>
