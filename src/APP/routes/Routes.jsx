@@ -8,7 +8,7 @@ import Login from './../modules/authentication/Login'
 import Signup from './../modules/authentication/Signup'
 import UpdatePwd from './../modules/authentication/updatePwd'
 
-import Dashboard from '../modules/landing/Home'
+import Dashboard from '../modules/calendar/Dashboard'
 import Calendar from './../modules/calendar/calendar'
 
 import Profile from './../modules/profile/VeiwProfile'
@@ -20,15 +20,14 @@ export default function AllRoutes() {
         <Route path='/' element={<Home />}/>
 
         <Route path='/authentication' element={<Authentication />}>
-          <Route index element={<Login />} />
+          <Route path="" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="updatepwd" element={<UpdatePwd />} />
         </Route>
 
-        <Route path='calendar' element={<Calendar />} />
-
-        <Route path='dashboard' element={<Dashboard />}>
+        <Route path='/dashboard' element={<Dashboard />}>
           <Route path='profile' element={<Profile />} />
+          <Route path='calendar' element={<Calendar />} />
         </Route>
       </Routes>
     </BrowserRouter>

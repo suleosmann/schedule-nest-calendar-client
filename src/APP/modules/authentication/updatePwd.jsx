@@ -1,8 +1,13 @@
 import React from 'react'
-import { Button} from 'flowbite-react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 export default function updatePwd() {
+  const handleUpdatepwd = (e) =>{
+    e.preventDefault();
+    window.location.href = '/authentication'; 
+    console.log("clicked")
+  }
+
   return (
     <div className="col-span-1 px-8 py-4 bg-gray-100 rounded-lg shadow-md">
           <div className="text-center mb-8">
@@ -15,11 +20,8 @@ export default function updatePwd() {
                 Enter your Email
               </label>
               <div className="relative">
-                <input
-                  type="email"
-                  id="email"
+                <input type="email" id="email" placeholder="Email Address"
                   className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                  placeholder="Email Address"
                 />
               </div>
             </div>
@@ -28,11 +30,8 @@ export default function updatePwd() {
                 Enter your password
               </label>
               <div className="relative">
-                <input
-                  type="password"
-                  id="password"
+                <input type="password" id="password" placeholder="Password"
                   className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                  placeholder="Password"
                 />
               </div>
             </div>
@@ -41,16 +40,12 @@ export default function updatePwd() {
                 Confirm password
               </label>
               <div className="relative">
-                <input
-                  type="password"
-                  id="confirmPassword"
+                <input type="password" id="confirmPassword" placeholder="Password"
                   className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                  placeholder="Password"
                 />
               </div>
             </div>
-            <button
-              type="submit"
+            <button type="submit" onClick={handleUpdatepwd}
               className="btn bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  w-full rounded-md py-2 px-4 text-center text-base font-medium shadow-sm hover:from-pink-500 hover:to-yellow-500 active:from-yellow-400 active:to-pink-400  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Update Password
@@ -60,15 +55,13 @@ export default function updatePwd() {
               <p className="text-sm text-gray-400">or</p>
               <hr className="w-full bg-gray-300" />
             </div>
-            <div className="grid items-center space-y-4 justify-items-strech ">
-                <Button outline gradientDuoTone="greenToBlue">Log in</Button>
-                <Button outline gradientDuoTone="greenToBlue">Sign up</Button>
+            <div className="grid space-y-4  ">
+              <a href="" className="text-sm  text-center text-blue-600 hover:underline">
+                <Link to="/authentication">Log in to your account</Link>
+              </a>
             </div>
            
           </form>
-          {/* <p className="text-center text-sm text-gray-500 mt-4">
-            Copyright 2024-Schedule Nest
-          </p> */}
         </div>
   )
 }

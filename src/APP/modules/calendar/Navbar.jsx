@@ -14,9 +14,9 @@ function NavComponent() {
         <Button className='border-white border-solid bg-transparent text-black' >Get started</Button>
         <Navbar.Toggle />
         
-        <Button className=' border-solid bg-transparent text-black' icon={HiArrowSmLeft}>l </Button>
+        <Button className=' border-solid bg-transparent text-black' icon={HiArrowSmLeft}></Button>
         
-        <Button className=' border-solid bg-transparent text-black' icon={HiArrowSmRight}> r</Button>
+        <Button className=' border-solid bg-transparent text-black' icon={HiArrowSmRight}></Button>
 
       </div>
       
