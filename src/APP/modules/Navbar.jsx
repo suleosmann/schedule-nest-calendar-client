@@ -2,9 +2,9 @@
 
 import { Button, Navbar } from 'flowbite-react';
 
-function Navbar2() {
+function NavComponent() {
   return (
-    <Navbar fluid rounded className="bg-green-200 " >
+    <Navbar fluid rounded className="bg-green-200 fixed " >
       <Navbar.Brand href="https://flowbite-react.com">
         <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="" />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">ScheduleNest</span>
@@ -23,4 +23,4 @@ function Navbar2() {
   );
 }
 
-export  default Navbar2;
+export  default NavComponent;
