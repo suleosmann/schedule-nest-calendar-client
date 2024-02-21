@@ -1,5 +1,5 @@
 import Component from './components/Navbar'
-import NavComponent from './modules/Navbar'
+import Navbar2 from './modules/Navbar'
 import Sidenav from './modules/Sidebar'
 import SignUpForm from './modules/authentication/Signup'
 import LoginForm from './modules/authentication/Login'
@@ -13,12 +13,12 @@ function App() {
 
   return (
     <div className='root'>
-      {/* <NavComponent/> */}
-      {/* <Navbar2 />
-      <Sidenav /> */}
-     {/*  <SignUpForm />*/} 
-      {/*  <LoginForm />*/} 
-       <UpdatePwd />
+      {/* <Component/> */}
+      <Navbar2 />
+      <Sidenav />
+      {/* <SignUpForm />  */}
+       {/* <LoginForm />  */}
+       {/* <UpdatePwd /> */}
       
     </div>
   )
