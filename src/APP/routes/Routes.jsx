@@ -26,8 +26,8 @@ export default function AllRoutes() {
         </Route>
 
         <Route path='/dashboard' element={<Dashboard />}>
+          <Route path='' element={<Calendar />} />
           <Route path='profile' element={<Profile />} />
-          <Route path='calendar' element={<Calendar />} />
         </Route>
       </Routes>
     </BrowserRouter>
