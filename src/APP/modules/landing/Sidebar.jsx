@@ -2,12 +2,7 @@ import { Sidebar } from 'flowbite-react';
 import { HiCalendar,   HiUser, HiLogout, HiOutlinePlus } from 'react-icons/hi';
 
 function Sidenav() {
-  const handleLogin = (e) =>{
-    e.preventDefault();
-    window.location.href = '/dashboard'; 
-    console.log("clicked")
-  }
-  
+
   return (
     
     <Sidebar aria-label="Sidebar">
