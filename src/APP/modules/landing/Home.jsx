@@ -5,6 +5,12 @@ export default function Home() {
   return (
     <div>
       <Navbar/>
+      <div id='image'>
+      <img src='' alt="calender" />
+      </div>
+      <div id='card'>
+      
+      </div>
     </div>
   )
 }
