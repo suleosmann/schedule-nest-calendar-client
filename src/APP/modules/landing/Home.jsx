@@ -6,7 +6,7 @@ export default function Home() {
     <div>
       <Navbar/>
       <div className='flex justify-between'>
-        <div className='text-center  w-2/5 pt-40 font-serif  '>
+        <div className='text-center  w-2/5 pt-40 font-serif bg-green-100  '>
           
             <div className=' font-bold text-5xl'>
               <h1 className='text-green-500'>Stay Connected, Stay Organized with Ease!</h1>
@@ -20,8 +20,8 @@ export default function Home() {
                 </div>
             </div>
         </div>
-        <div className='w-3/5 bg-green-200 pl-80 pt-30 pb-28  '>
-            <img src='https://i.pinimg.com/564x/8a/19/a2/8a19a276c090470c94dcbee2eead5134.jpg' alt="calender" />
+        <div className='w-3/5  pl-80 pt-30 pb-28  '>
+            <img src='https://i.pinimg.com/736x/b1/5a/a7/b15aa7cf57b714bac8809b56646ff761.jpg' alt="calender" />
           
         </div>
       </div>

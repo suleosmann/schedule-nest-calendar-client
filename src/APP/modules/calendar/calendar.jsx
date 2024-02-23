@@ -36,13 +36,13 @@ const MyCalendars = () => {
   console.log('Today is: ', moment().format('MMMM Do YYYY, h:mm:ss a')); // Log current time with correct timezone
 
   return (
-    <div>
+    <div className='bg-green-100 w-full h-full'>
       <Calendar
         localizer={localizer}
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 500 }}
+        style={{ height: 900, width: '100%' }}
         views={['month', 'week', 'day']}
         toolbar={true}
         selectable={true} // Enable selecting slots

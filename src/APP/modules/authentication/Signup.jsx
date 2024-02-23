@@ -45,7 +45,7 @@ function SignUpForm() {
               </div>
             </div>
             <button type="submit" onClick={handleSignUp}
-              className="btn bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  w-full rounded-md py-2 px-4 text-center text-base font-medium shadow-sm hover:from-pink-500 hover:to-yellow-500 active:from-yellow-400 active:to-pink-400  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="btn bg-amber-500 w-full rounded-md py-2 px-4 text-center text-base font-medium shadow-sm hover:from-pink"
             > Sign up
             </button>
             <div className="flex items-center justify-between">
