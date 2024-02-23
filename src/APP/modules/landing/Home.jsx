@@ -1,10 +1,16 @@
 
 import Navbar from './../../components/Navbar'
+import Footer from '../../components/Footer'
+import HeroSection from './HeroSection'
+import AboutSection from './AboutSection'
+import FeaturesSections from './FeaturesSections'
+import CtaSection from './CtaSection'
 
 export default function Home() {
   return (
     <div>
       <Navbar/>
+<<<<<<< HEAD
       <div className='flex justify-between'>
         <div className='text-center  w-2/5 pt-40 font-serif bg-green-100  '>
           
@@ -26,6 +32,13 @@ export default function Home() {
         </div>
       </div>
       
+=======
+      <HeroSection/>
+      <AboutSection/>
+      <FeaturesSections/>
+      <CtaSection/>
+      <Footer/>
+>>>>>>> 34d2371f7bb49db44c970110179c780360fd76a9
     </div>
   )
 }

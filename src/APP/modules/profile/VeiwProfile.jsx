@@ -4,9 +4,9 @@ import React from 'react'
 function ViewProfile() {
   return (
    <>
-     <section className="relative block" style={{ height: "300px" }}>
+     <section className="relative block " style={{ height: "300px" }}>
   <div
-    className="top-0 w-full h-full bg-center bg-cover"
+    className="top-0 w-full h-full bg-center bg-cover bg-gray-300"
     style={{
       backgroundImage:
         "url('https://pngtree.com/freebackground/aesthetic-green-background-with-pastel-colors_1660219.html')"
@@ -23,7 +23,7 @@ function ViewProfile() {
   ></div>
 </section>
 
-<section className="relative py-16 bg-gray-300">
+<section className="absolute bottom-0 right-0">
   <div className="container mx-auto px-4">
     <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
       <div className="px-6">
