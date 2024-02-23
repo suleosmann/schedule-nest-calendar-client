@@ -9,7 +9,7 @@ function ViewProfile() {
     className="top-0 w-full h-full bg-center bg-cover bg-gray-300"
     style={{
       backgroundImage:
-        "url('https://pngtree.com/freebackground/aesthetic-green-background-with-pastel-colors_1660219.html')"
+        "url('https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80')"
     }}
   >
     <span
