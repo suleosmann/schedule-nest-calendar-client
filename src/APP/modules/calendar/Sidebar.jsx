@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Sidebar } from 'flowbite-react';
 import { HiCalendar, HiUser, HiLogout, HiOutlinePlus } from 'react-icons/hi';
 import CreateEventModal from './CreateEventModal'; // Make sure to create this component
+import { Link } from 'react-router-dom'
 
 function Sidenav() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -9,6 +10,12 @@ function Sidenav() {
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+  const profieHandle = (e) => {
+    e.preventDefault();
+    window.location.href = '/dashboard/profile'; 
+    console.log("clicked");
+}
+
   
   return (
     <div className='sideBar'>
@@ -26,7 +33,7 @@ function Sidenav() {
             Calender
           </Sidebar.Item>
 
-          <Sidebar.Item className = 'h-25 bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' href="#" icon={HiUser}>
+          <Sidebar.Item className = 'h-25 bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' href="#" icon={HiUser} onClick={profieHandle}>
             Profile
           </Sidebar.Item>
         </Sidebar.ItemGroup>
