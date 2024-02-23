@@ -1,10 +1,11 @@
-// Navbar.js
-
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import useNavigation from '../hooks/useNavigation'; // Import the custom hook
 
 const Navbar = () => {
+  const navigate = useNavigation(); // Initialize the navigate function from the custom hook
+
   return (
     <nav className="bg-green-300">
       <div className="max-w-7xl mx-auto px-4">
@@ -19,7 +20,9 @@ const Navbar = () => {
             <a href="#features" className="text-black px-3 py-2 rounded-md text-sm font-medium">Features</a>
             <a href="#about" className="text-black px-3 py-2 rounded-md text-sm font-medium">About</a>
             {/* Get Started button */}
-            <a href="#" className="text-white px-4 py-2 rounded-md text-sm font-medium bg-green-500 hover:bg-green-600">Get Started</a>
+            <a href="#" className="text-white px-4 py-2 rounded-md text-sm font-medium bg-green-500 hover:bg-green-600" onClick={() => navigate('/login')}>
+              Get Started
+            </a>
           </div>
         </div>
       </div>
