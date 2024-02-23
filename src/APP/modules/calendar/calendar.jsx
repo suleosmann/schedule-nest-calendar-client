@@ -64,7 +64,7 @@ const MyCalendars = () => {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 92g0, width:1650 }}
+        style={{ height: 920, width:1650 }}
         views={['month', 'week', 'day']}
         toolbar={true}
         selectable={true}
