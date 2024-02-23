@@ -1,11 +1,14 @@
 import AllRoutes from './routes/Routes'
+import { AuthProvider } from './context/AuthProvider';
 
 function App() {
 
 
   return (
     <div className='root'>
-    <AllRoutes/>
+      <AuthProvider>
+        <AllRoutes/>
+      </AuthProvider>
     </div>
   )
 }
