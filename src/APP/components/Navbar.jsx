@@ -20,7 +20,7 @@ const Navbar = () => {
             <a href="#features" className="text-black px-3 py-2 rounded-md text-sm font-medium">Features</a>
             <a href="#about" className="text-black px-3 py-2 rounded-md text-sm font-medium">About</a>
             {/* Get Started button */}
-            <a href="#" className="text-white px-4 py-2 rounded-md text-sm font-medium bg-green-500 hover:bg-green-600" onClick={() => navigate('/login')}>
+            <a href="#" className="text-white px-4 py-2 rounded-md text-sm font-medium bg-green-500 hover:bg-green-600" onClick={() => navigate('/authentication/signup')}>
               Get Started
             </a>
           </div>
