@@ -6,8 +6,8 @@ function Sidenav() {
   return (
     
     <Sidebar aria-label="Sidebar">
-      <Sidebar.Items  >
-        <Sidebar.ItemGroup className='flex-col justify-center items-center gap-4 py-6 my-5 c-8 ' >
+      <Sidebar.Items>
+        <Sidebar.ItemGroup className='flex-col justify-center items-center gap-4 py-6 my-5 c-8'>
           <Sidebar.Item className = ' h-20 bg-yellow-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' href="#" icon={HiOutlinePlus}>
             Create Event
           </Sidebar.Item>

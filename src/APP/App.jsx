@@ -6,7 +6,7 @@ function App() {
   return (
     <div className='root'>
     <AllRoutes/>
-     <AllRoutes/>
+     {/* <AllRoutes/> */}
     
     {/* <Navbar />
     <div className='flex'>
