@@ -32,7 +32,7 @@ function Sidenav() {
         </Sidebar.ItemGroup>
 
         <Sidebar.ItemGroup  >
-          <Sidebar.Item className='mt-36 border-white bg-yellow-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' href="#" icon={HiLogout}>
+          <Sidebar.Item className='mt-96 border-white bg-yellow-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' href="#" icon={HiLogout}>
             Log Out
           </Sidebar.Item>
         </Sidebar.ItemGroup>
