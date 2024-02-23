@@ -42,7 +42,7 @@ const MyCalendars = () => {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 500 }}
+        style={{ height: 950, width:1580 }}
         views={['month', 'week', 'day']}
         toolbar={true}
         selectable={true} // Enable selecting slots

@@ -7,7 +7,7 @@ function Sidenav() {
   return (
     <div className='sideBar'>
     <Sidebar  aria-label="Sidebar" >
-      <Sidebar.Items  >
+      <Sidebar.Items className='h-full' >
         <Sidebar.ItemGroup className='flex-col justify-center items-center gap-4 py-6 mt-8 c-8 ' >
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">ScheduleNest</span>
         </Sidebar.ItemGroup>
