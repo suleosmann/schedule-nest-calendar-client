@@ -10,6 +10,11 @@ function Sidenav() {
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+  const changeToCalendar = (e) => {
+    e.preventDefault();
+    window.location.href = '/dashboard'; 
+    console.log("clicked");
+};
   const profieHandle = (e) => {
     e.preventDefault();
     window.location.href = '/dashboard/profile'; 
@@ -29,7 +34,7 @@ function Sidenav() {
             Create Event
           </Sidebar.Item>
 
-          <Sidebar.Item className = 'h-25 bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' href="#" icon={HiCalendar}>
+          <Sidebar.Item className = 'h-25 bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' href="#" icon={HiCalendar} onClick={changeToCalendar}>
             Calender
           </Sidebar.Item>
 

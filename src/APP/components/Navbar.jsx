@@ -1,34 +1,31 @@
-import { Button, Navbar } from 'flowbite-react';
+// Navbar.js
 
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-function Component() {
-
-  const handleGetStarted = (e) =>{
-    e.preventDefault();
-    window.location.href = '/authentication'; 
-    console.log("clicked")
-  }
-
+const Navbar = () => {
   return (
-    <Navbar fluid rounded className="bg-green-300 " >
-      <Navbar.Brand href="https://flowbite-react.com">
-        <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="" />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">ScheduleNest</span>
-      </Navbar.Brand>
-      <div className="flex md:order-2">
-        <Button href="authentication" outline onClick={handleGetStarted} gradientDuoTone="greenToBlue">Get started</Button>
-        <Navbar.Toggle />
+    <nav className="bg-green-300">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex justify-between h-16">
+          <div className="flex items-center">
+            <FontAwesomeIcon icon={faStar} className="text-yellow-500 mr-2" />
+            <span className="text-black text-xl font-semibold">ScheduleNest</span>
+          </div>
+          <div className="flex items-center space-x-4">
+            {/* Navbar links */}
+            <a href="#" className="text-black px-3 py-2 rounded-md text-sm font-medium">Home</a>
+            <a href="#" className="text-black px-3 py-2 rounded-md text-sm font-medium">Features</a>
+            <a href="#" className="text-black px-3 py-2 rounded-md text-sm font-medium">About</a>
+            <a href="#" className="text-black px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+            {/* Get Started button */}
+            <a href="#" className="text-white px-4 py-2 rounded-md text-sm font-medium bg-green-500 hover:bg-green-600">Get Started</a>
+          </div>
+        </div>
       </div>
-      <Navbar.Collapse>
-        <Navbar.Link href="Home" active>
-          Home
-        </Navbar.Link>
-        <Navbar.Link href="#">Features</Navbar.Link>
-        <Navbar.Link href="#">About</Navbar.Link>
-        <Navbar.Link href="#">Contact</Navbar.Link>
-      </Navbar.Collapse>
-    </Navbar>
+    </nav>
   );
-}
+};
 
-export  default Component;
+export default Navbar;
