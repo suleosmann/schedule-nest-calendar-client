@@ -15,10 +15,9 @@ const Navbar = () => {
           </div>
           <div className="flex items-center space-x-4">
             {/* Navbar links */}
-            <a href="#" className="text-black px-3 py-2 rounded-md text-sm font-medium">Home</a>
-            <a href="#" className="text-black px-3 py-2 rounded-md text-sm font-medium">Features</a>
-            <a href="#" className="text-black px-3 py-2 rounded-md text-sm font-medium">About</a>
-            <a href="#" className="text-black px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+            <a href="/" className="text-black px-3 py-2 rounded-md text-sm font-medium">Home</a>
+            <a href="#features" className="text-black px-3 py-2 rounded-md text-sm font-medium">Features</a>
+            <a href="#about" className="text-black px-3 py-2 rounded-md text-sm font-medium">About</a>
             {/* Get Started button */}
             <a href="#" className="text-white px-4 py-2 rounded-md text-sm font-medium bg-green-500 hover:bg-green-600">Get Started</a>
           </div>
