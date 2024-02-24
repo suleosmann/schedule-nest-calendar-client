@@ -14,7 +14,7 @@ export default function updatePwd() {
 
     const [email, setEmail] = useState('');
 
-    const [pwd, setPwd] = useState('');
+    const [password, setPwd] = useState('');
     const [validPwd, setValidPwd] = useState(false);
     const [pwdFocus, setPwdFocus] = useState(false);
 
@@ -32,24 +32,24 @@ export default function updatePwd() {
     useEffect(() => {
         setValidPwd(PWD_REGEX.test(pwd));
         setValidMatch(pwd === matchPwd);
-    }, [pwd, matchPwd])
+    }, [password, matchPwd])
 
     useEffect(() => {
         setErrMsg('');
-    }, [email, pwd, matchPwd])
+    }, [email, password, matchPwd])
 
     const handleUpdatepwd = async (e) => {
         e.preventDefault();
         // if button enabled with JS hack
         const v1 = email;
-        const v2 = PWD_REGEX.test(pwd);
+        const v2 = PWD_REGEX.test(password);
         if (!v1 || !v2 ) {
             setErrMsg("Invalid Entry");
             return;
         }
         try {
             const response = await axios.post(REGISTER_URL,
-                JSON.stringify({ email, pwd }),
+                JSON.stringify({ email, password }),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
@@ -116,7 +116,7 @@ export default function updatePwd() {
                     <div className="relative">
                       <input type="password" id="password" placeholder="Password"
                         onChange={(e) => setPwd(e.target.value)}
-                        value={pwd}
+                        value={password}
                         required
                         aria-invalid={validPwd ? "false" : "true"}
                         aria-describedby="pwdnote"

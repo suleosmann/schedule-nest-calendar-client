@@ -3,10 +3,58 @@ import { useRef, useState, useEffect } from 'react';
 import useAuth from './../../hooks/useAuth';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from './../../api/axios';
-import useLogin from './../../hooks/useLogin';
 
 function Login() {
-  
+  const { setAuth } = useAuth();
+
+  const LOGIN_URL = '/auth/login';
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/dashboard";
+
+    const userRef = useRef();
+    const errRef = useRef();
+
+    const [email, setEmail] = useState('');
+    const [password, setPwd] = useState('');
+    const [errMsg, setErrMsg] = useState('');
+
+    useEffect(() => {
+        userRef.current.focus();
+    }, [])
+
+    useEffect(() => {
+        setErrMsg('');
+    }, [email, password])
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post(LOGIN_URL,
+                JSON.stringify({ email, password }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            );
+            console.log(JSON.stringify(response?.data));
+            console.log(JSON.stringify(response));
+            const accessToken = response?.data?.accessToken;
+            setAuth({accessToken });
+            setEmail('');
+            setPwd('');
+            navigate(from, { replace: true });
+        } catch (err) {
+            if (err.response?.status === 401) {
+                setErrMsg('Ivalid Email or Password');
+            } else if (err.response?.status === 401) {
+                setErrMsg('Unauthorized');
+            } 
+            console.log(err)
+            errRef.current.focus();
+        }
+    }
 
   return (
     <div className="col-span-1 px-8 py-4 bg-gray-100 rounded-lg shadow-md">
@@ -37,7 +85,7 @@ function Login() {
         </label>
         <div className="relative">
           <input type="password" id="password" placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPwd(e.target.value)}
             value={password}
             required
             className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
