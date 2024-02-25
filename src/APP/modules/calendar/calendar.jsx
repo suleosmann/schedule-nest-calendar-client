@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from './Sidebar';
-import { Outlet } from 'react-router-dom';
 import useAxiosPrivate from './../../hooks/useAxiosPrivate';
-import { useNavigate, useLocation } from 'react-router-dom';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
@@ -13,8 +10,6 @@ const localizer = momentLocalizer(moment);
 export default function MyCalendar() {
   const [events, setEvents] = useState([]);
   const axiosPrivate = useAxiosPrivate();
-  const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     const controller = new AbortController();
