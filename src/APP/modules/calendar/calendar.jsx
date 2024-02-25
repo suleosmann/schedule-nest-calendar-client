@@ -1,91 +1,60 @@
 import React, { useState, useEffect } from 'react';
+import useAxiosPrivate from './../../hooks/useAxiosPrivate';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
-import 'moment-timezone';
-import CreateEventModal from './CreateEventModal'; // the CreateEventModal component
-import EventDetailsModal from './EventDetailsModal'; // Import a new component for showing event details
+import 'moment-timezone'; // Import moment-timezone to handle time zones
 
 const localizer = momentLocalizer(moment);
 
-const MyCalendars = () => {
+export default function MyCalendar() {
+  const [events, setEvents] = useState([]);
+  const axiosPrivate = useAxiosPrivate();
+
   useEffect(() => {
-    moment.tz.setDefault('America/New_York');
-  }, []);
-
-  const [isEventDetailsModalOpen, setIsEventDetailsModalOpen] = useState(false);
-  // State to hold the selected event for details
-  const [selectedEvent, setSelectedEvent] = useState(null);
-
-  // Updated state to include a setter function and make it modifiable
-  const [events, setEvents] = useState([
-    {
-      title: 'Meeting',
-      start: new Date(2024, 1, 21, 10, 0, 0), // Assuming 21st Feb is the date for the meeting
-      end: new Date(2024, 1, 21, 12, 0, 0),
-    },
-  ]);
-  // State to manage modal visibility
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  // State to hold the selected date
-  const [selectedDate, setSelectedDate] = useState();
-
-  const handleSelectSlot = ({ start }) => {
-    // Set the selected date
-    setSelectedDate(start);
-    // Open the modal
-    setIsModalOpen(true);
-  };
-
-   // Handler for clicking an event
-   const handleSelectEvent = (event) => {
-    // Set the selected event
-    setSelectedEvent(event);
-    // Open the event details modal
-    setIsEventDetailsModalOpen(true);
-  };
-
-  // Function to add a new event
-  const addNewEvent = (eventTitle, eventNotes) => {
-    const newEvent = {
-      title: eventTitle,
-      start: selectedDate,
-      end: new Date(selectedDate.getTime() + 2 * 60 * 60 * 1000), // End time is 2 hours after start time by default
-      notes: eventNotes, // Additional notes for the event
+    const controller = new AbortController();
+  
+    const fetchEvents = async () => {
+      try {
+        const response = await axiosPrivate.get('/users/calendar-events', {
+          signal: controller.signal,
+        });
+        console.log('Response:', response.data);
+  
+        setEvents(
+          response.data.map(event => ({
+            id: event.id,
+            title: event.title,
+            // Parse start_time and end_time strings to Date objects
+            start: new Date(event.start_time), // Ensure start_time is in UTC or local time
+            end: new Date(event.end_time),     // Ensure end_time is in UTC or local time
+            allDay: false, // Assuming events have specific start and end times
+          }))
+        );
+      } catch (error) {
+        console.error('Error fetching calendar events:', error);
+        // Handle error and navigate if needed
+      }
     };
-    setEvents([...events, newEvent]);
-    setIsModalOpen(false); // Close the modal after adding the event
-  };
-
+  
+    fetchEvents();
+  
+    return () => {
+      controller.abort();
+    };
+  }, [axiosPrivate]);
+  
   return (
-    <div className='bg-green-100 w-full h-full'>
-      <Calendar
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        style={{ height: 920, width:1650 }}
-        views={['month', 'week', 'day']}
-        toolbar={true}
-        selectable={true}
-        onSelectSlot={handleSelectSlot}
-        onSelectEvent={handleSelectEvent}
-      />
-
-    {isEventDetailsModalOpen && (
-        <EventDetailsModal
-          event={selectedEvent}
-          closeModal={() => setIsEventDetailsModalOpen(false)}
+    <div className="flex">
+      <div className="calendar-container">
+        <Calendar
+          localizer={localizer}
+          events={events}
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: 500 }} // Adjust height as needed
         />
-      )}
-      {isModalOpen && (
-        <CreateEventModal
-          closeModal={() => setIsModalOpen(false)}
-          saveEvent={addNewEvent}
-        />
-      )}
+      </div>
     </div>
   );
-};
-
-export default MyCalendars;
+}

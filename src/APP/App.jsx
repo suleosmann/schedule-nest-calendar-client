@@ -1,4 +1,5 @@
  import AllRoutes from './routes/Routes'
+import { AuthProvider } from './context/AuthProvider';
 
 function App() {
 

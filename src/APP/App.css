@@ -1,4 +1,8 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
+/* 
 :root {
   --dark-one: #000000;
   --dark-two: #7a7a7a;
@@ -10,11 +14,7 @@
   --light-three: #f6f7fb;
   --main-color-2: #bdd28e;
   --light-blue: #42bfe4;
-}
-
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+} */
 
 .rbc-calendar{
   min-height : 38em;
@@ -22,4 +22,55 @@
 }
 span{
   font-family: 'poppins';
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+
+.instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #faca15;
+    color: #000000;
+    padding: 0.25rem;
+    position: relative;
+    bottom: -10px;
+}
+
+.instructions > svg {
+    margin-right: 0.25rem;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+.hide {
+    display: none;
+}
+
+.valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+}
+
+.invalid {
+    color: red;
+    margin-left: 0.25rem;
+}
+
+.errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.flexGrow {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
 }
