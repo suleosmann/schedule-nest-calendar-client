@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <FontAwesomeIcon icon={faStar} className="text-yellow-500 mr-2" />
+            <FontAwesomeIcon icon={faStar} className="text-yellow-200 mr-2" />
             <span className="text-black text-xl font-semibold">ScheduleNest</span>
           </div>
           <div className="flex items-center space-x-4">

@@ -10,7 +10,7 @@ const HeroSection = () => {
   return (
     <div className="flex mb-64">
       <div className="w-2/6 h-80 mt-32 ml-64">
-        <h1 className="text-6xl pb-6">
+        <h1 className="text-6xl pb-6 italic">
           Stay Connected, Stay Organized with Ease!
         </h1>
         <h3 className="text-gray-500">

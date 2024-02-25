@@ -13,7 +13,7 @@ const FeaturesSections = () => {
               <h1 className="ml-0  p-3 bg-green-900">01</h1>
               <h1 className="p-3 bg-green-300 w-72">Event Manager</h1>
             </div>
-            <p className="p-6">
+            <p className="p-6 italic">
               The "Event Manager" in a calendar helps users organize events
               efficiently by setting details like titles, times, locations, and
               reminders. It streamlines planning with options for recurring
@@ -27,7 +27,7 @@ const FeaturesSections = () => {
               <h1 className="ml-0  p-3 bg-green-900">02</h1>
               <h1 className="p-3 bg-green-300 w-72">Task Manager</h1>
             </div>
-            <p className="p-6  pb-20">
+            <p className="p-6  pb-20 italic">
               A "Task Manager" helps users organize tasks by creating, tracking,
               and prioritizing them. It includes features like setting due
               dates, categorizing tasks, and marking them as complete, aiming to
@@ -41,7 +41,7 @@ const FeaturesSections = () => {
               <h1 className="ml-0  p-3 bg-green-900">03</h1>
               <h1 className="p-3 bg-green-300 w-72">Calendar</h1>
             </div>
-            <p className="p-6 pb-12">
+            <p className="p-6 pb-12 italic">
               A calendar enables users to schedule, organize, and manage events
               efficiently. It includes features like setting event details,
               reminders, and recurring events, ensuring users stay organized and

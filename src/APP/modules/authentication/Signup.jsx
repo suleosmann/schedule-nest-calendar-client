@@ -10,7 +10,7 @@ function SignUpForm() {
     return (
         <div className="col-span-1 px-8 py-4 bg-gray-100 rounded-lg shadow-md">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-yellow-500">Sign Up</h1>
+            <h1 className="text-4xl font-bold text-yellow-500 italic">Sign Up</h1>
             <div className="border-b border-black w-full mx-auto mt-4"></div>
           </div>
           <form action="#" className="space-y-8">
@@ -20,7 +20,7 @@ function SignUpForm() {
               </label>
               <div className="relative">
                 <input type="email" id="email" placeholder="Email Address"
-                  className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500" 
+                  className="w-full italic rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500" 
                 />
               </div>
             </div>
@@ -30,7 +30,7 @@ function SignUpForm() {
               </label>
               <div className="relative">
                 <input type="password" id="password" placeholder="Password"
-                  className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full talic rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -40,7 +40,7 @@ function SignUpForm() {
               </label>
               <div className="relative">
                 <input type="password" id="confirmPassword" placeholder="Password"
-                  className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full italic  rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -55,7 +55,7 @@ function SignUpForm() {
             </div>
             <div className="grid space-y-4  ">
               <a href="#" className="text-sm text-center text-blue-600 hover:underline">
-                <Link to="/authentication">Already have an account? Log in</Link>
+                <Link to="/authentication" className='italic'>Already have an account? Log in</Link>
               </a>
             </div>
           </form>
