@@ -8,7 +8,7 @@ export default function VeiwProfile() {
   
     const fetchProfile = async () => {
       try {
-        const response = await axiosPrivate.get('/user_info', {
+        const response = await axiosPrivate.get('/users/user_info', {
           signal: controller.signal,
         });
         console.log('Response:', response.data);

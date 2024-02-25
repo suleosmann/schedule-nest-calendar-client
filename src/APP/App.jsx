@@ -6,18 +6,9 @@ function App() {
 
   return (
     <div className='root'>
-    <AllRoutes/>
-     {/* <AllRoutes/> */}
-    
-    {/* <Navbar />
-    <div className='flex'>
-    <Sidenav />
-    <div>
-    <ViewProfile />
-    </div>
-    </div> */}
-
-    
+      <AuthProvider>
+        <AllRoutes/>
+      </AuthProvider>
     </div>
   )
 }

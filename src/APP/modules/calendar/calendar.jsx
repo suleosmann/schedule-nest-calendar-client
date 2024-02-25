@@ -45,14 +45,14 @@ export default function MyCalendar() {
   }, [axiosPrivate]);
   
   return (
-    <div className="flex">
+    <div key={Math.random()} className="flex">
       <div className="calendar-container">
         <Calendar
           localizer={localizer}
           events={events}
           startAccessor="start"
           endAccessor="end"
-          style={{ height: 500 }} // Adjust height as needed
+          style={{ height: 900, width:1650 }} // Adjust height as needed
         />
       </div>
     </div>

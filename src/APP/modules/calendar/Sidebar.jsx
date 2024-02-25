@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Sidebar } from 'flowbite-react';
 import { HiCalendar, HiUser, HiLogout, HiOutlinePlus } from 'react-icons/hi';
-import CreateEventModal from './CreateEventModal'; // Make sure to create this component
+import CreateEventModal from './CreateEventModal'; // Notification component
 import { Link } from 'react-router-dom';
 import useNavigation from '../../hooks/useNavigation'
 
@@ -22,18 +22,18 @@ function Sidenav() {
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">ScheduleNest</span>
           </Sidebar.ItemGroup>
           <Sidebar.ItemGroup className='flex-col justify-center items-center gap-4 py-6 my-5 c-8'>
-            <Sidebar.Item className='h-20 bg-yellow-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' href="#" icon={HiOutlinePlus} onClick={toggleModal}>
+            <Sidebar.Item className='h-20 bg-yellow-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' icon={HiOutlinePlus} onClick={toggleModal}>
               Create Event
             </Sidebar.Item>
-            <Sidebar.Item className='h-25 bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' href="#" icon={HiCalendar} onClick={() => navigate('/dashboard')}>
+            <Sidebar.Item className='h-25 bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900'  icon={HiCalendar} onClick={() => navigate('/dashboard')}>
               Calendar
             </Sidebar.Item>
-            <Sidebar.Item className='h-25 bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' href="#" icon={HiUser} onClick={() => navigate('/dashboard/profile')}>
+            <Sidebar.Item className='h-25 bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' icon={HiUser} onClick={() => navigate('/dashboard/profile')}>
               Profile
             </Sidebar.Item>
           </Sidebar.ItemGroup>
           <Sidebar.ItemGroup>
-            <Sidebar.Item className='mt-96 border-white bg-yellow-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' href="#" icon={HiLogout}>
+            <Sidebar.Item className='mt-96 border-white bg-yellow-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900'  icon={HiLogout}>
               Log Out
             </Sidebar.Item>
           </Sidebar.ItemGroup>
