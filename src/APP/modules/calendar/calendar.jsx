@@ -1,55 +1,60 @@
 import React, { useState, useEffect } from 'react';
+import Sidebar from './Sidebar';
+import { Outlet } from 'react-router-dom';
+import useAxiosPrivate from './../../hooks/useAxiosPrivate';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
-import 'moment-timezone'; // Import moment-timezone to use timezones
 
 const localizer = momentLocalizer(moment);
 
-const MyCalendars = () => {
+export default function MyCalendar() {
+  const [events, setEvents] = useState([]);
+  const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   useEffect(() => {
-    // Set the timezone to match your local timezone
-    moment.tz.setDefault('America/New_York'); // Replace 'America/New_York' with your local timezone
-  }, []);
+    const controller = new AbortController();
 
-  const [events] = useState([
-    {
-      title: 'Meeting',
-      start: new Date(2024, 1, 12, 10, 0, 0),
-      end: new Date(2024, 1, 12, 12, 0, 0),
-    },
-  ]);
+    const fetchEvents = async () => {
+      try {
+        const response = await axiosPrivate.get('/users/calendar-events', {
+          signal: controller.signal,
+        });
+        console.log('Response:', response.data);
+        setEvents(response.data.map(event => ({
+          id: event.id,
+          title: event.title,
+          start: new Date(event.start_time),
+          end: new Date(event.end_time),
+          allDay: false, // Assuming events have specific start and end times
+        })));
+      } catch (error) {
+        console.error('Error fetching calendar events:', error);
+        // Handle error and navigate if needed
+      }
+    };
 
-  const handleSelectSlot = ({ start }) => {
-    console.log('Clicked date:', start); // Console log the clicked date
-    // const title = window.prompt('Enter event title:');
-    // if (title) {
-    //   const newEvent = {
-    //     title,
-    //     start,
-    //     end,
-    //   };
-    //   setEvents([...events, newEvent]);
-    // }
-  };
+    fetchEvents();
 
-  console.log('Today is: ', moment().format('MMMM Do YYYY, h:mm:ss a')); // Log current time with correct timezone
+    return () => {
+      controller.abort();
+    };
+  }, [axiosPrivate]);
 
   return (
-    <div>
-      <Calendar
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        style={{ height: 500 }}
-        views={['month', 'week', 'day']}
-        toolbar={true}
-        selectable={true} // Enable selecting slots
-        onSelectSlot={handleSelectSlot} // Handle selecting slots
-      />
+    <div className="flex">
+      <div className="calendar-container">
+        <Calendar
+          localizer={localizer}
+          events={events}
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: 500 }} // Adjust height as needed
+        />
+      </div>
     </div>
   );
-};
-
-export default MyCalendars;
+}
