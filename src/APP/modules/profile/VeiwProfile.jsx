@@ -51,7 +51,7 @@ export default function ViewProfile() {
    >
      <span
        id="blackOverlay"
-       className="w-full h-full absolute opacity-50 bg-black"
+       className="w-full h-full absolute opacity-50 bg-grey-500"
      ></span>
    </div>
    <div
@@ -60,10 +60,10 @@ export default function ViewProfile() {
    ></div>
  </section>
  
- <section className="absolute bottom-0 right-0">
-   <div className="container mx-auto px-4">
-     <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
-       <div className="px-6">
+ <section className="flex h-full py-56 w-full bottom-0 right-0 bg-gray-200">
+   <div className="container flex mx-24 mt-44">
+     <div className="relative flex flex-col min-w-1 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+       <div className="px-36">
          <div className="flex flex-wrap justify-center">
            {/* Profile Picture Section */}
            <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
