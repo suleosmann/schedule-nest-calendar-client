@@ -8,3 +8,13 @@
     margin: 0;
     padding: 0;
 }
+
+/* Example CSS */
+.successMessage {
+    z-index: 1050; /* Ensure this is higher than the EditModal's z-index */
+  }
+  
+  .editModal {
+    z-index: 1040; /* Example z-index for EditModal */
+  }
+  

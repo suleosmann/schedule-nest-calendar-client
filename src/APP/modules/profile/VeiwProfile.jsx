@@ -1,45 +1,43 @@
 import React, { useState, useEffect } from "react";
-import useAxiosPrivate from "./../../hooks/useAxiosPrivate";
-import editModal from "./EditProfile";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import DeleteModal from "./DeleteModal"; // Ensure this import is correct
+import EditProfile from "./EditProfile"; // Ensure this import is correct
 
-export default function VeiwProfile() {
+export default function ViewProfile() {
   const axiosPrivate = useAxiosPrivate();
-  const [userInfo, setUserInfo] = useState()
+  const [userInfo, setUserInfo] = useState();
+  const [showDeleteModal, setShowDeleteModal] = useState(false); // State to control the visibility of DeleteModal
+  const [showEditProfileModal, setShowEditProfileModal] = useState(false); // State to control the visibility of EditProfile
+
 
   useEffect(() => {
     const controller = new AbortController();
-
     const fetchProfile = async () => {
       try {
-        // Retrieve access token from local storage
         const accessToken = localStorage.getItem("accessToken");
-
-        console.log("Access Token:", accessToken);
-
-
-        // Send request to /users/user_info with access token in the authorization header
         const userInfoResponse = await axiosPrivate.get("/users/user_info", {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
+          headers: { Authorization: `Bearer ${accessToken}` },
           signal: controller.signal,
         });
-
-        console.log("User Info:", userInfoResponse.data);
-        // Update state or perform any other action with the user info
-        setUserInfo(userInfoResponse.data)
+        setUserInfo(userInfoResponse.data);
       } catch (error) {
         console.error("Error fetching User Profile:", error);
-        // Handle error and navigate if needed
       }
     };
-
     fetchProfile();
-
-    return () => {
-      controller.abort();
-    };
+    return () => controller.abort();
   }, [axiosPrivate]);
+
+  // Function to be called when the delete action is confirmed
+  const handleDelete = () => {
+    // You can perform additional actions here if needed, like calling an API to delete the account
+    setShowDeleteModal(false); // Close the modal after the delete action
+    // Here you might want to navigate the user away from the profile page, or refresh the user info
+  };
+  const handleUpdateProfile = (updatedInfo) => {
+    // Optionally perform update logic here
+    setShowEditProfileModal(false);
+  };
 
   return (
     <>{userInfo &&(<>
@@ -86,6 +84,7 @@ export default function VeiwProfile() {
                  className="bg-green-500 active:bg-green-900 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none focus:ring focus:ring-green-900 sm:mr-2 mb-1"
                  type="button"
                  style={{ transition: "all .15s ease" }}
+                 onClick={() => setShowEditProfileModal(true)}
                >
                  Edit Profile
                </button>
@@ -93,6 +92,7 @@ export default function VeiwProfile() {
                  className="bg-red-500 active:bg-orange-900 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none focus:ring focus:ring-green-900 sm:mr-2 mb-1"
                  type="button"
                  style={{ transition: "all .15s ease" }}
+                 onClick={() => setShowDeleteModal(true)}
                >
                  Delete Account
                </button>
@@ -157,6 +157,21 @@ export default function VeiwProfile() {
      </div>
    </div>
  </section>
+ {showEditProfileModal && (
+            <EditProfile
+              userInfo={userInfo}
+              closeModal={() => setShowEditProfileModal(false)}
+              saveProfile={handleUpdateProfile}
+            />
+          )}
+ {showDeleteModal && (
+            <DeleteModal
+              type="delete"
+              message="Are you sure you want to delete your account?"
+              closeModal={() => setShowDeleteModal(false)}
+              onDelete={handleDelete} // Pass the handleDelete function
+            />
+          )}
  </>
  )
  }
