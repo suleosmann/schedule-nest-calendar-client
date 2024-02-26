@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Sidebar } from 'flowbite-react';
 import { HiCalendar, HiUser, HiLogout, HiOutlinePlus } from 'react-icons/hi';
 import CreateEventModal from './CreateEventModal'; // Notification component
-import { Link } from 'react-router-dom';
 import useNavigation from '../../hooks/useNavigation'
 
 function Sidenav() {

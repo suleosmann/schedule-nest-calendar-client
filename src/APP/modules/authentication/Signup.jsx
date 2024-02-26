@@ -4,12 +4,15 @@ import { useRef, useState, useEffect } from "react";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from './../../api/axios';
+import useNavigation from '../../hooks/useNavigation'
 
 function SignUpForm() {
     const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
     const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+    
     const REGISTER_URL = '/auth/signup';
+    const navigate = useNavigation(); // Use the custom hook
 
     const nameRef = useRef();
     const errRef = useRef();
@@ -92,14 +95,10 @@ function SignUpForm() {
 
     return (
         <>
-            {success ? (
-                <section>
-                    <h1>Success!</h1>
-                    <p>
-                        <a href="#">Sign In</a>
-                    </p>
-                </section>
-            ) : (
+            {success ? 
+      navigate('/authentication')
+
+     : (
                 <section>
                     <div className="col-span-1 px-8 py-4 bg-gray-100 rounded-lg shadow-md">
                         <div className="text-center mb-8">

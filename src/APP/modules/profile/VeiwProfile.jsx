@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useAxiosPrivate from "./../../hooks/useAxiosPrivate";
+import editModal from "./EditProfile";
 
 export default function VeiwProfile() {
   const axiosPrivate = useAxiosPrivate();
@@ -7,11 +8,6 @@ export default function VeiwProfile() {
 
   useEffect(() => {
     const controller = new AbortController();
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const toggleModal = () => {
-      setIsModalOpen(!isModalOpen);
-    };
 
     const fetchProfile = async () => {
       try {
