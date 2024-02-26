@@ -7,6 +7,11 @@ export default function VeiwProfile() {
 
   useEffect(() => {
     const controller = new AbortController();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const toggleModal = () => {
+      setIsModalOpen(!isModalOpen);
+    };
 
     const fetchProfile = async () => {
       try {
