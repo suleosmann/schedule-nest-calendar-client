@@ -53,14 +53,14 @@ function editModal({ closeModal, saveEvent }) {
           const controller = new AbortController();
 
           const v1 = USER_REGEX.test(name);
-          const v2 = EMAIL_REGEX.test(profession);
+          const v2 = USER_REGEX.test(profession);
           if (!v1 || !v2 ) {
               setErrMsg("Invalid Entry");
               return;
           }
           console.log("Sending sign-up request with data:", { name, profession, phone, about });
 
-          const fetchEvents = async () => {
+          const fetchProfile = async () => {
             const accessToken = localStorage.getItem("accessToken");
             try {
               const response = await axiosPrivate.post(PROFILE_URL,
@@ -88,11 +88,14 @@ function editModal({ closeModal, saveEvent }) {
             }
           };
 
+          fetchProfile()
+
           return () => {
             controller.abort();
           };
 
         }, [axiosPrivate]);
+
 
     closeModal();
   };
