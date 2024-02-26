@@ -50,6 +50,9 @@ function Login() {
   
       console.log("Access Token:", accessToken);
   
+      // Store the access token in local storage
+      localStorage.setItem('accessToken', accessToken);
+  
       // Store the access token in the authentication context
       setAuth({ accessToken });
   
@@ -64,7 +67,7 @@ function Login() {
         setErrMsg('Invalid Email or Password');
       } else if (err.response?.status === 401) {
         setErrMsg('Unauthorized');
-      } 
+      }
       console.log(err);
       errRef.current.focus();
     }

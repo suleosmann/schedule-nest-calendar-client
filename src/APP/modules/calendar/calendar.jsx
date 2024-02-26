@@ -15,8 +15,16 @@ export default function MyCalendar() {
     const controller = new AbortController();
   
     const fetchEvents = async () => {
+      const accessToken = localStorage.getItem("accessToken");
+
+      console.log("Access Token:", accessToken);
+
       try {
+
         const response = await axiosPrivate.get('/users/calendar-events', {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
           signal: controller.signal,
         });
         console.log('Response:', response.data);
