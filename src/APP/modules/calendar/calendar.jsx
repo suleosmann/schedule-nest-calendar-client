@@ -20,7 +20,6 @@ export default function MyCalendar() {
       console.log("Access Token:", accessToken);
 
       try {
-
         const response = await axiosPrivate.get('/users/calendar-events', {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -51,6 +50,16 @@ export default function MyCalendar() {
       controller.abort();
     };
   }, [axiosPrivate]);
+
+  const handleEventClick = (event) => {
+    // Handle the event click here, you can access event properties like event.id, event.title, etc.
+    console.log('Event clicked:', event);
+  };
+
+  const handleSlotSelect = (slotInfo) => {
+    // Handle the slot select here, slotInfo contains information about the selected slot
+    console.log('Slot selected:', slotInfo);
+  };
   
   return (
     <div key={Math.random()} className="flex">
@@ -61,6 +70,9 @@ export default function MyCalendar() {
           startAccessor="start"
           endAccessor="end"
           style={{ height: 900, width:1650 }} // Adjust height as needed
+          onSelectEvent={handleEventClick} // Attach event click handler
+          onSelectSlot={handleSlotSelect} // Attach slot select handler
+          selectable={true} // Make sure that slots are selectable
         />
       </div>
     </div>
