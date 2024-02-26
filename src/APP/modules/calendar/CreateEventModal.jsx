@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // Define a functional component called CreateEventModal which accepts two props: closeModal and saveEvent
-function CreateEventModal({ closeModal, saveEvent }) {
+function CreateEventModal({ closeModal }) {
   // State variables to hold the form inputs
   const [eventTitle, setEventTitle] = useState('');
   const [eventNotes, setEventNotes] = useState('');

@@ -5,11 +5,39 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
 import 'moment-timezone'; // Import moment-timezone to handle time zones
 
+import  EventModal from './EventDetailsModal'
+import  EditEventModal from './CreateEventModal'
+
 const localizer = momentLocalizer(moment);
 
 export default function MyCalendar() {
   const [events, setEvents] = useState([]);
   const axiosPrivate = useAxiosPrivate();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+
+  // const toggleModal = () => {
+  //   setIsModalOpen(!isModalOpen);
+  // };
+
+  const openModal = (event, isEdit) => {
+    setSelectedEvent(event);
+    if (isEdit) {
+      setIsModalOpen(true);
+    } else {
+      
+      setIsEditModalOpen(true);
+    }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setIsEditModalOpen(false);
+    setSelectedEvent(null);
+  };
 
   useEffect(() => {
     const controller = new AbortController();
@@ -53,11 +81,17 @@ export default function MyCalendar() {
 
   const handleEventClick = (event) => {
     // Handle the event click here, you can access event properties like event.id, event.title, etc.
+    // toggleModal();
+    openModal(event, true);
+    // {isModalOpen && <EventModal event={event} closeModal={toggleModal} />}
     console.log('Event clicked:', event);
   };
 
   const handleSlotSelect = (slotInfo) => {
     // Handle the slot select here, slotInfo contains information about the selected slot
+    // toggleModal();
+    openModal(slotInfo, false);
+    // {isModalOpen && <EditEventModal event={slotInfo} closeModal={toggleModal} />}
     console.log('Slot selected:', slotInfo);
   };
   
@@ -75,6 +109,9 @@ export default function MyCalendar() {
           selectable={true} // Make sure that slots are selectable
         />
       </div>
+      {isModalOpen && <EventModal event={selectedEvent} closeModal={closeModal} />}
+      {isEditModalOpen && <EditEventModal event={selectedEvent} closeModal={closeModal} />}
+
     </div>
   );
 }
