@@ -7,7 +7,7 @@ const Navbar = () => {
   const navigate = useNavigation(); // Initialize the navigate function from the custom hook
 
   return (
-    <nav className="bg-green-300">
+    <nav className="bg-gradient-to-r from-green-400 to-green-300">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
@@ -20,7 +20,7 @@ const Navbar = () => {
             <a href="#features" className="text-black px-3 py-2 rounded-md text-sm font-medium">Features</a>
             <a href="#about" className="text-black px-3 py-2 rounded-md text-sm font-medium">About</a>
             {/* Get Started button */}
-            <a href="#" className="text-white px-4 py-2 rounded-md text-sm font-medium bg-green-500 hover:bg-green-600" onClick={() => navigate('/authentication/signup')}>
+            <a href="#" className="text-white px-4 py-2 rounded-md text-sm font-medium bg-green-700 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900" onClick={() => navigate('/authentication/signup')}>
               Get Started
             </a>
           </div>
