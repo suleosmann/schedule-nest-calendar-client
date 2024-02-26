@@ -3,6 +3,7 @@ import useAxiosPrivate from "./../../hooks/useAxiosPrivate";
 
 export default function VeiwProfile() {
   const axiosPrivate = useAxiosPrivate();
+  const [userInfo, setUserInfo] = useState()
 
   useEffect(() => {
     const controller = new AbortController();
@@ -25,6 +26,7 @@ export default function VeiwProfile() {
 
         console.log("User Info:", userInfoResponse.data);
         // Update state or perform any other action with the user info
+        setUserInfo(userInfoResponse.data)
       } catch (error) {
         console.error("Error fetching User Profile:", error);
         // Handle error and navigate if needed
@@ -39,7 +41,7 @@ export default function VeiwProfile() {
   }, [axiosPrivate]);
 
   return (
-    <>
+    <>{userInfo &&(<>
       <section className="relative block " style={{ height: "300px" }}>
    <div
      className="top-0 w-full h-full bg-center bg-cover bg-gray-300"
@@ -100,11 +102,11 @@ export default function VeiwProfile() {
            <div className="w-full lg:w-9/12 px-4 lg:order-1">
              <div className="text-center mt-12">
                <h3 className="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2">
-                 MGK Edits
+                 {userInfo.name}
                </h3>
                <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
                  <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{" "}
-                 Software Developer
+                 {userInfo.profession}
                </div>
                <div className="mt-10 py-4 bg-white border rounded-lg shadow-md">
      <div className="text-center">
@@ -112,12 +114,12 @@ export default function VeiwProfile() {
        <div className="text-gray-700">
                <div className="mb-2 text-gray-700 mt-5">
                  <i className="mb-4 text-lg leading-relaxed text-gray-800"></i>
-                 Email - mgkedits@gmail.com
+                 {userInfo.email}
  
                </div>
                <div className="mb-2 text-gray-700">
                  <i className="mb-4 text-lg leading-relaxed text-gray-800"></i>
-                 Phone Number  +254 758 946 342
+                 {userInfo.phone_number}
                </div>
              </div>
              </div>
@@ -133,11 +135,7 @@ export default function VeiwProfile() {
                      </h4>
  
                      <p className="mb-4 text-lg leading-relaxed text-gray-800">
-                     An artist of considerable range, Mogaka the name taken by
-                     Melbourne-raised, Brooklyn-based Nick Murphy writes,
-                     performs and records all of his own music, giving it a
-                     warm, intimate feel with a solid groove structure. An
-                     artist of considerable range.
+                     {userInfo.about}
                      </p>
                    
                    <a
@@ -158,7 +156,10 @@ export default function VeiwProfile() {
      </div>
    </div>
  </section>
+ </>
+ )
+ }
  
  </>
-   )
+   );
 }
