@@ -37,7 +37,7 @@ function editModal({ closeModal, saveEvent }) {
     }, [name]);
 
     useEffect(() => {
-        setValidProfession(EMAIL_REGEX.test(profession));
+        setValidProfession( USER_REGEX.test(profession));
     }, [profession]);
 
     useEffect(() => {
