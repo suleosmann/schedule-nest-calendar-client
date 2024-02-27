@@ -1,19 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
+<<<<<<< HEAD
 import RecurrenceFormModal from './RecurrenceFormModal'; // Import the new component
 
+=======
+import useAxios from './../../api/axios';
+import { Alert } from 'flowbite-react';
+>>>>>>> a198ecb (add guest)
 
+function statusMessage(message, status) {
+  return (
+    <Alert color="{status}" onDismiss={() => alert('Alert dismissed!')}>
+      <span className="font-medium">Info alert!</span> 
+      {message}
+    </Alert>
+  );
+}
 
 // Define a functional component called CreateEventModal which accepts two props: closeModal and saveEvent
 function CreateEventModal({ closeModal }) {
-  // State variables to hold the form inputs
-  const [eventTitle, setEventTitle] = useState('');
-  const [eventNotes, setEventNotes] = useState('');
+  // State variables to hold the form input
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
   const [location, setLocation] = useState('');
+  const [attendees, setAttendees] = useState([]);
+  const [recurrence, setRecurrence] = useState(false); // Assuming it's a boolean value
+  const [interval, setInterval] = useState(1); // Assuming it's a number
+  const [byweekday, setByWeekday] = useState([]); // Assuming it's an array of weekdays (e.g., ['MO', 'TU'])
+  const [bymonthday, setByMonthday] = useState([]); // Assuming it's an array of monthdays (e.g., [1, 15])
+
 
   const [date, setDate] = useState('');
-  const [startTime, setStartTime] = useState('');
+  const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+<<<<<<< HEAD
   const [endTime, setEndTime] = useState('');
 
   const [showRecurrenceModal, setShowRecurrenceModal] = useState(false);
@@ -26,21 +48,78 @@ function CreateEventModal({ closeModal }) {
   ];
 
  
+=======
+>>>>>>> a198ecb (add guest)
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  const [showStatusMessage, setShowStatusMessage] = useState(false);
+
+
+
+  useEffect( () => {
+    const controller = new AbortController();
+
+    const fetchUsers = async () => {
+      const controller = new AbortController();
+      try {
+        const response = await useAxios.get('/users/get_all_users', {
+          signal: controller.signal,
+        });
+        console.log('Response:', response.data);
+
+        setUsers(response.data );
+
+        console.log('Users:', users);
+
+      } catch (error) {
+        console.error('Error fetching Users', error);
+        // Handle error and navigate if needed
+      }
+    };
+
+    fetchUsers();
+
+    return () => {
+      controller.abort();
+    };
+  },[useAxios]);
 
   const handleChange = (selectedUser) => {
     setSelectedUsers([...selectedUsers, selectedUser]);
   };
 
   // Function to handle saving the event
-  const handleSave = () => {
+  const handleSave = async () => {
     // Construct start and end Date objects from date and time inputs
-    const start = new Date(`${date}T${startTime}`);
-    const end = new Date(`${date}T${endTime}`);
+    const start_time = new date(`${date}T${startTime}`);
+    const end_time= new date(`${date}T${endTime}`);
+
+    try {
+      // Directly retrieve the accessToken from localStorage
+      const accessToken = localStorage.getItem("accessToken");
+
+      const response = await axiosPrivate.post(PROFILE_URL, JSON.stringify({ title, description, start_time, end_time, location, attendees, recurrence, interval, byweekday, bymonthday, count}), {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}` // Manually include the accessToken
+        },
+      });
+  
+      console.log("Profile update response:", response.data);
+      setShowSuccessMessage(true); // Show success message upon successful update
+  
+      // Automatically close the modal and navigate after showing the success message
+      setTimeout(() => {
+        closeModal();
+        navigate('/dashboard/profile'); // Adjust navigation as necessary
+      }, 2000); // Adjust timing as necessary
+  
+    } catch (err) {
+      setErrMsg('Update Failed. Please try again.');
+      console.error("Update error:", err);
+    }
     
-    // Call the passed in saveEvent function with the new event details
-    saveEvent(eventTitle, start, end, eventNotes);
-    // Close the modal
     closeModal();
   };
 
@@ -71,9 +150,9 @@ function CreateEventModal({ closeModal }) {
           {/* Input field for event title */}
           <input
             type="text"
-            id="eventTitle"
-            value={eventTitle}
-            onChange={(e) => setEventTitle(e.target.value)}
+            id="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Event title"
           />
@@ -81,9 +160,9 @@ function CreateEventModal({ closeModal }) {
       <div className="mb-4">
           {/* Input field for event title */}
           <textarea
-            id="eventNotes"
-            value={eventNotes}
-            onChange={(e) => setEventNotes(e.target.value)}
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Event Details"
             rows="4"
@@ -153,11 +232,12 @@ function CreateEventModal({ closeModal }) {
         <div className='mb-4'>
             <Select
             onChange={handleChange}
-            options={users}
-            placeholder="Select a user..."
+            options={users.map(user => ({ value: user.id, label: user.name }))}
+            placeholder="Add guest..."
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
           {selectedUsers.map(user => (
-            <p key={user.value}>Selected: {user.label}</p>
+            <p key={user.id} className='text-gray-700 text-sm font-bold'>Selected: {user.name}</p>
           ))}
          
         </div>
@@ -188,8 +268,12 @@ function CreateEventModal({ closeModal }) {
           </button>
         </div>
       </div>
+<<<<<<< HEAD
       {showRecurrenceModal && <RecurrenceFormModal closeRecurrenceModal={closeRecurrenceModal} />}
 
+=======
+      {showSuccessMessage && <SuccessMessage message="Profile successfully updated!" onClose={() => setShowSuccessMessage(false)} />}
+>>>>>>> a198ecb (add guest)
     </div>
   );
 }
