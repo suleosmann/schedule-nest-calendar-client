@@ -55,8 +55,8 @@ function RecurrenceFormModal({ closeRecurrenceModal }) {
     switch (recurrence) {
       case 'daily':
         return (
-            <div className="bg-white p-4 rounded-lg shadow-lg">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-white p-4 rounded-lg shadow-lg mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" >
             {renderDateInput('Start Date', 'start-date', startDate, (e) => setStartDate(e.target.value))}
             {renderDateInput('End Date', 'end-date', endDate, (e) => setEndDate(e.target.value))}
           </div>

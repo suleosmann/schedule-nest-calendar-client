@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
-<<<<<<< HEAD
-import RecurrenceFormModal from './RecurrenceFormModal'; // Import the new component
-
-=======
 import useAxios from './../../api/axios';
 import { Alert } from 'flowbite-react';
->>>>>>> a198ecb (add guest)
+import RecurrenceFormModal from './RecurrenceFormModal'; // Import the new component
 
 function statusMessage(message, status) {
   return (
@@ -19,6 +15,8 @@ function statusMessage(message, status) {
 
 // Define a functional component called CreateEventModal which accepts two props: closeModal and saveEvent
 function CreateEventModal({ closeModal }) {
+  const [showRecurrenceModal, setShowRecurrenceModal] = useState(false);
+
   // State variables to hold the form input
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -35,21 +33,7 @@ function CreateEventModal({ closeModal }) {
   const [date, setDate] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-<<<<<<< HEAD
-  const [endTime, setEndTime] = useState('');
 
-  const [showRecurrenceModal, setShowRecurrenceModal] = useState(false);
-
-
-  const users = [
-    { value: 'apple', label: 'Apple' },
-    { value: 'banana', label: 'Banana' },
-    { value: 'cherry', label: 'Cherry' },
-  ];
-
- 
-=======
->>>>>>> a198ecb (add guest)
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [users, setUsers] = useState([]);
 
@@ -107,7 +91,7 @@ function CreateEventModal({ closeModal }) {
       });
   
       console.log("Profile update response:", response.data);
-      setShowSuccessMessage(true); // Show success message upon successful update
+      setShowStatusMessage(true); // Show success message upon successful update
   
       // Automatically close the modal and navigate after showing the success message
       setTimeout(() => {
@@ -268,12 +252,9 @@ function CreateEventModal({ closeModal }) {
           </button>
         </div>
       </div>
-<<<<<<< HEAD
       {showRecurrenceModal && <RecurrenceFormModal closeRecurrenceModal={closeRecurrenceModal} />}
 
-=======
-      {showSuccessMessage && <SuccessMessage message="Profile successfully updated!" onClose={() => setShowSuccessMessage(false)} />}
->>>>>>> a198ecb (add guest)
+      {showStatusMessage && <statusMessage status='InfoMessage' message="Profile successfully updated!" onClose={() => setShowStatusMessage(false)} />}
     </div>
   );
 }
