@@ -82,7 +82,7 @@ function EditModal({ closeModal, userInfo }) {
           <div className="mb-4">
             <label htmlFor="phone" className="block text-gray-700 text-sm font-bold mb-2">Phone</label>
             <input
-              type="text"
+              type="tel"
               id="phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
