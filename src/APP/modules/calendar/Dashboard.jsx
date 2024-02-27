@@ -3,6 +3,8 @@ import Sidebar from './Sidebar';
 import { Outlet } from 'react-router-dom';
 import useAxiosPrivate from './../../hooks/useAxiosPrivate';
 import { useNavigate, useLocation } from 'react-router-dom';
+import CommonNavbar from '../../components/CommonNavbar';
+import Footer  from '../../components/Footer';
 
 export default function Dashboard() {
   const [users, setUsers] = useState([]);
@@ -12,9 +14,13 @@ export default function Dashboard() {
   const location = useLocation();
 
   return (
+    <>
+    <CommonNavbar />
     <div className="flex">
       <Sidebar />
       <Outlet />
     </div>
+    <Footer />
+    </>
   );
 }

@@ -30,8 +30,8 @@ export default function updatePwd() {
     }, [])
 
     useEffect(() => {
-        setValidPwd(PWD_REGEX.test(pwd));
-        setValidMatch(pwd === matchPwd);
+        setValidPwd(PWD_REGEX.test(password));
+        setValidMatch(password === matchPwd);
     }, [password, matchPwd])
 
     useEffect(() => {
