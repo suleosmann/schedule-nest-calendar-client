@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
+import RecurrenceFormModal from './RecurrenceFormModal'; // Import the new component
+
 
 
 // Define a functional component called CreateEventModal which accepts two props: closeModal and saveEvent
@@ -13,6 +15,9 @@ function CreateEventModal({ closeModal }) {
   const [startTime, setStartTime] = useState('');
   const [endDate, setEndDate] = useState('');
   const [endTime, setEndTime] = useState('');
+
+  const [showRecurrenceModal, setShowRecurrenceModal] = useState(false);
+
 
   const users = [
     { value: 'apple', label: 'Apple' },
@@ -37,6 +42,16 @@ function CreateEventModal({ closeModal }) {
     saveEvent(eventTitle, start, end, eventNotes);
     // Close the modal
     closeModal();
+  };
+
+  // Function to open the recurrence modal
+  const handleRecurrenceClick = () => {
+    setShowRecurrenceModal(true);
+  };
+
+  // Function to close the recurrence modal
+  const closeRecurrenceModal = () => {
+    setShowRecurrenceModal(false);
   };
 
   return (
@@ -150,7 +165,7 @@ function CreateEventModal({ closeModal }) {
         <div className='mb-4'>
         <button
             className="bg-transparent hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded"
-            onClick={closeModal}
+            onClick={handleRecurrenceClick}
           >
             Recurrence
           </button>
@@ -173,6 +188,8 @@ function CreateEventModal({ closeModal }) {
           </button>
         </div>
       </div>
+      {showRecurrenceModal && <RecurrenceFormModal closeRecurrenceModal={closeRecurrenceModal} />}
+
     </div>
   );
 }
