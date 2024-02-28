@@ -1,71 +1,79 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useRef, useState, useEffect } from "react";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from './../../api/axios';
 
-export default function UpdatePwd() {
+export default function updatePwd() {
   const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
   const REGISTER_URL = '/auth/update_password';
 
-  const userRef = useRef();
-  const errRef = useRef();
+   const userRef = useRef();
+    const errRef = useRef();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [validPwd, setValidPwd] = useState(false);
-  const [pwdFocus, setPwdFocus] = useState(false);
-  const [matchPwd, setMatchPwd] = useState('');
-  const [validMatch, setValidMatch] = useState(false);
-  const [matchFocus, setMatchFocus] = useState(false);
-  const [errMsg, setErrMsg] = useState('');
-  const [success, setSuccess] = useState(false);
+    const [email, setEmail] = useState('');
 
-  useEffect(() => {
-    userRef.current.focus();
-  }, []);
+    const [password, setPwd] = useState('');
+    const [validPwd, setValidPwd] = useState(false);
+    const [pwdFocus, setPwdFocus] = useState(false);
 
-  useEffect(() => {
-    setValidPwd(PWD_REGEX.test(password));
-    setValidMatch(password === matchPwd);
-  }, [password, matchPwd]);
+    const [matchPwd, setMatchPwd] = useState('');
+    const [validMatch, setValidMatch] = useState(false);
+    const [matchFocus, setMatchFocus] = useState(false);
 
-  useEffect(() => {
-    setErrMsg('');
-  }, [email, password, matchPwd]);
+    const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
 
-  const handleUpdatePwd = async (e) => {
-    e.preventDefault();
-    if (!email || !validPwd || !validMatch) {
-      setErrMsg('Invalid Entry');
-      return;
-    }
-    try {
-      const response = await axios.patch(
-        REGISTER_URL,
-        { email, new_password: password, confirm_new_password: confirmPassword }, // Include confirmPassword in the request payload
-        {
-          headers: { 'Content-Type': 'application/json' },
-          withCredentials: true,
+    useEffect(() => {
+        userRef.current.focus();
+    }, [])
+
+    useEffect(() => {
+        setValidPwd(PWD_REGEX.test(password));
+        setValidMatch(password === matchPwd);
+    }, [password, matchPwd])
+
+    useEffect(() => {
+        setErrMsg('');
+    }, [email, password, matchPwd])
+
+    const handleUpdatepwd = async (e) => {
+        e.preventDefault();
+        // if button enabled with JS hack
+        const v1 = email;
+        const v2 = PWD_REGEX.test(password);
+        if (!v1 || !v2 ) {
+            setErrMsg("Invalid Entry");
+            return;
         }
-      );
-      console.log(JSON.stringify(response?.data));
-      setSuccess(true);
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg('No Server Response');
-      } else if (err.response?.status === 409) {
-        setErrMsg('Username Taken');
-      } else {
-        setErrMsg('Registration Failed');
-      }
-      errRef.current.focus();
+        try {
+            const response = await axios.post(REGISTER_URL,
+                JSON.stringify({ email, password }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            );
+            // TODO: remove console.logs before deployment
+            console.log(JSON.stringify(response?.data));
+            //console.log(JSON.stringify(response))
+            setSuccess(true);
+            //clear state and controlled inputs
+            setEmail('');
+            setPwd('');
+            setMatchPwd('');
+        } catch (err) {
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 409) {
+                setErrMsg('Username Taken');
+            } else {
+                setErrMsg('Registration Failed')
+            }
+            errRef.current.focus();
+        }
     }
-  };
 
   return (
     <>
@@ -142,7 +150,7 @@ export default function UpdatePwd() {
                   <button type="submit" onClick={handleUpdatepwd}
                     disabled={!validPwd || !validMatch ? true : false}
                     className="btn bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  w-full rounded-md py-2 px-4 text-center text-base font-medium shadow-sm hover:from-pink-500 hover:to-yellow-500 active:from-yellow-400 active:to-pink-400  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                  > Sign up
+                  > Update Password
                   </button>
                   <div className="flex items-center justify-between">
                     <hr className="w-full bg-gray-200" />
@@ -158,7 +166,6 @@ export default function UpdatePwd() {
         </div>
           </section>
       )}
-    </>
-  );
+  </>
+  )
 }
-  
