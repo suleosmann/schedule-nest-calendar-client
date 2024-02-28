@@ -105,7 +105,7 @@ export default function MyCalendar() {
   
   return (
     <div key={Math.random()} className="flex">
-      <div className="calendar-container">
+      <div className="calendar-container bg-green-50">
         <Calendar
           localizer={localizer}
           events={events}
