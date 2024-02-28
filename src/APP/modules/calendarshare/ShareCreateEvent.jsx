@@ -10,7 +10,6 @@ function ShareCreateEvent({ closeModal }) {
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigation(); 
 
-  const [showRecurrenceModal, setShowRecurrenceModal] = useState(false);
   const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [errMsg, setErrMsg] = useState('');
