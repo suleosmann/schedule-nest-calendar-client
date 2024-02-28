@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Select from 'react-select';
 
 import useAxiosPrivate from './../../hooks/useAxiosPrivate';
-import useAxios from './../../api/axios';
 import useNavigation from './../../hooks/useNavigation';
-
-import SuccessModal from './../../components/NotifyModal';
-import ErrorModal from './../../components/NotifyModal';
 
 function ShareCreateEvent({ closeModal }) {
   const POSTEVENT_URL = '/events/create_event';
-  const GET_USERS_URL = '/users/get_all_users';
 
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigation(); 
@@ -29,69 +23,53 @@ function ShareCreateEvent({ closeModal }) {
   const [location, setLocation] = useState('');
   const [attendees, setAttendees] = useState([]);
 
-
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-
-  const [selectedUsers, setSelectedUsers] = useState([]);
-  const [users, setUsers] = useState([]);
-
-  //--------------------------------------successModal ------------------------------------------
-  const openSuccessModal = () => {
-    setSuccessModalOpen(true);
-  };
-
-  const closeSuccessModal = () => {
-    setSuccessModalOpen(false);
-  };
-
-  //--------------------------------------errorModal ------------------------------------------
-  const openErrorModal = () => {
-    setErrorModalOpen(true);
-  };
-
-  const closeErrorModal = () => {
-    setErrorModalOpen(false);
-  };
-
-  //--------------------------------------recurrenceModal ------------------------------------------
-  const handleRecurrenceClick = () => {
-    setShowRecurrenceModal(true);
-  };
-
-  const closeRecurrenceModal = () => {
-    setShowRecurrenceModal(false);
-  };
-
   //--------------------------------------event attendees useEffect ----------------------------------
   useEffect(() => {
     const user_id = localStorage.getItem("sharedUserId");
     setAttendees([{ user_id }]); // Set attendees as an array containing the user_id from local storage
   }, []);
 
+  //--------------------------------------function to fomat date for database--------------------------
+function formatDateTimedb(date, time) {
+  const [year, month, day] = date.split('-');
+  const [hours, minutes] = time.split(':');
+   `${year}-${month}-${day}T${hours}:${minutes}:00`;
+  return `${year}-${month}-${day}T${hours}:${minutes}:00`;
+}
+
   //--------------------------------------saving event to api ------------------------------------------
   const handleSave = async () => {
-    const start_time = new Date(`${date}T${startTime}:00`).toISOString().slice(0, 19);
-    const end_time = new Date(`${date}T${endTime}:00`).toISOString().slice(0, 19);
-  
-    // Log the data being sent
-    console.log('Data being sent:', { title, description, start_time, end_time, location, attendees });
-  
+    const start_time =  formatDateTimedb(date, startTime);
+    const end_time= formatDateTimedb(date, startTime);
+    console.log( 'title: ',title,' description: ', description,' start_time: ', start_time, 'end_time: ',end_time, 'location:',location, 'attendees : ',attendees);
+
     try {
       const accessToken = localStorage.getItem("accessToken");
-      const response = await axiosPrivate.post(POSTEVENT_URL, JSON.stringify({ title, description, start_time, end_time, location, attendees }), {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}` 
-        },
-      });
+      const response = await axiosPrivate.post(
+        POSTEVENT_URL,
+        JSON.stringify({
+          title,
+          description,
+          start_time,
+          end_time,
+          location,
+          attendees
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
       console.log("Event Created successfully ", response.data);
       openSuccessModal();
     } catch (err) {
-      setErrMsg('Update Failed. Please try again.');
+      setErrMsg("Update Failed. Please try again.");
       console.error("Update error:", err);
       openErrorModal();
-    }    
+    }  
+    navigate('/dashboard/SharedCalendar')
     closeModal();
   };
   
@@ -201,9 +179,6 @@ function ShareCreateEvent({ closeModal }) {
           </button>
         </div>
       </div>
-      {showRecurrenceModal && <RecurrenceFormModal closeRecurrenceModal={closeRecurrenceModal} />}
-      {isSuccessModalOpen && <SuccessModal type='success' message='Event has been added successfully to your calendar!' closeModal={closeSuccessModal} />}
-      {isErrorModalOpen && <ErrorModal type='error' message={errMsg} closeModal={closeErrorModal} />}
     </div>
   );
 }

@@ -39,6 +39,8 @@ export default function MyCalendar() {
     setSelectedEvent(null);
   };
 
+  //-----------------------------------------date fomatting for calendar -------------------------------------------
+
   function formatDateString(dbDate) {
     const dateObj = new Date(dbDate);
   const options = { weekday: 'short', month: 'short', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
@@ -46,7 +48,7 @@ export default function MyCalendar() {
   return formattedDate;
   }
   
-
+//------------------------------------------get calendar events -----------------------------------------------------
   useEffect(() => {
     const controller = new AbortController();
   
@@ -90,18 +92,12 @@ export default function MyCalendar() {
   }, [axiosPrivate]);
 
   const handleEventClick = (event) => {
-    // Handle the event click here, you can access event properties like event.id, event.title, etc.
-    // toggleModal();
     openModal(event, true);
-    // {isModalOpen && <EventModal event={event} closeModal={toggleModal} />}
     console.log('Event clicked:', event);
   };
 
   const handleSlotSelect = (slotInfo) => {
-    // Handle the slot select here, slotInfo contains information about the selected slot
-    // toggleModal();
     openModal(slotInfo, false);
-    // {isModalOpen && <EditEventModal event={slotInfo} closeModal={toggleModal} />}
     console.log('Slot selected:', slotInfo);
   };
   

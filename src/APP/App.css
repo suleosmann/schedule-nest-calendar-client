@@ -1,7 +1,7 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 /* 
 :root {
   --dark-one: #000000;
@@ -23,10 +23,6 @@
 span{
   font-family: 'poppins';
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-
-
 .instructions {
     font-size: 0.75rem;
     border-radius: 0.5rem;

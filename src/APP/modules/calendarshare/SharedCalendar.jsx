@@ -14,15 +14,14 @@ export default function SharedCalendar() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
-
+//----------------------------------get events for shared calendar -------------------------------------
   useEffect(() => {
     const user_id = localStorage.getItem("sharedUserId");
     const controller = new AbortController();
 
     const fetchEvents = async () => {
       try {
-        const response = await axiosPrivate.get(
-          `/calendar/get_shared_calendar/${user_id}`,
+        const response = await axiosPrivate.get(`/calendar/get_shared_calendar/${user_id}`,
           {
             signal: controller.signal,
           }
