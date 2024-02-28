@@ -71,7 +71,7 @@ function NotifyModal({ type, message, event, closeModal }) {
         </div>
         <div className=" flex-row flex items-center ml-40 mt-4">
           <button
-            className="bg-transparent hover:bg-red-100 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded"
+            className="bg-transparent hover:bg-red-700 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded"
             onClick={handleEvent}
           >
             Delete

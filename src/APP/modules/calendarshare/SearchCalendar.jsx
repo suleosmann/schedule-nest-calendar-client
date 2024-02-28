@@ -64,7 +64,7 @@ const SearchCalendar = () => {
         value={selectedUser}
         onChange={handleChange}
         options={users.map((user) => ({ value: user.id, label: user.name }))}
-        placeholder="Add guest..."
+        placeholder="Share your calendar..."
         className="shadow appearance-none border rounded w-full py-2 px-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       />
       <button onClick={handleSend} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
