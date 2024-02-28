@@ -31,12 +31,10 @@ export default function ViewProfile() {
 
   // Function to be called when the delete action is confirmed
   const handleDelete = () => {
-    // You can perform additional actions here if needed, like calling an API to delete the account
-    setShowDeleteModal(false); // Close the modal after the delete action
-    // Here you might want to navigate the user away from the profile page, or refresh the user info
+    setShowDeleteModal(false);
   };
+
   const handleUpdateProfile = (updatedInfo) => {
-    // Optionally perform update logic here
     setShowEditProfileModal(false);
   };
 
@@ -157,8 +155,8 @@ export default function ViewProfile() {
           )}
           {showDeleteModal && (
             <DeleteModal
-              type="delete"
-              message="Are you sure you want to delete your account?"
+              userInfo={userInfo}
+              message="This action will delete your account!"
               closeModal={() => setShowDeleteModal(false)}
               onDelete={handleDelete} // Pass the handleDelete function
             />

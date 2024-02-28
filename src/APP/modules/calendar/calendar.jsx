@@ -39,6 +39,12 @@ export default function MyCalendar() {
     setSelectedEvent(null);
   };
 
+  function formatDateString(dateString) {
+    const [year, month, day, hours, minutes, seconds] = dateString.split(/[T:-]/).map((part, index) => index === 0 ? parseInt(part, 10) : parseInt(part, 10) - 1);
+    return new Date(Date.UTC(year, month, day, hours, minutes, seconds));
+  }
+  
+
   useEffect(() => {
     const controller = new AbortController();
   
@@ -60,9 +66,11 @@ export default function MyCalendar() {
           response.data.map(event => ({
             id: event.id,
             title: event.title,
+            description: event.description,
+            location: event.location,
             // Parse start_time and end_time strings to Date objects
-            start: new Date(event.start_time), // Ensure start_time is in UTC or local time
-            end: new Date(event.end_time),     // Ensure end_time is in UTC or local time
+            start: formatDateString(event.start_time), // Ensure start_time is in UTC or local time
+            end: formatDateString(event.end_time),     // Ensure end_time is in UTC or local time
             allDay: false, // Assuming events have specific start and end times
           }))
         );

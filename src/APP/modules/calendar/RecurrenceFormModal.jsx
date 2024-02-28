@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
-// Define a functional component for recurrence form
 function RecurrenceFormModal({ closeRecurrenceModal }) {
-  // State variables to hold the recurrence form inputs
   const [recurrence, setRecurrence] = useState('');
 
   // Function to handle closing the recurrence form
@@ -64,7 +62,7 @@ function RecurrenceFormModal({ closeRecurrenceModal }) {
           );
           case 'weekly':
             return (
-              <div className="recurrence-form-weekly">
+              <div className="recurrence-form-weekly bg-white p-4 rounded-lg shadow-lg mb-4">
                 <div className="week-days-selector">
                   {daysOfWeek.map((day) => (
                     <div key={day} className="day-checkbox">
@@ -79,7 +77,7 @@ function RecurrenceFormModal({ closeRecurrenceModal }) {
                     </div>
                   ))}
                 </div>
-                <div className="date-range">
+                <div className="date-range grid grid-cols-1 gap-4 sm:grid-cols-2 mt-2">
                   <div className="date-input">
                     <label htmlFor="start-date-weekly">Start Date</label>
                     <input
@@ -117,7 +115,7 @@ function RecurrenceFormModal({ closeRecurrenceModal }) {
                   className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
               </div>
-              <div className="date-range">
+              <div className="date-range grid grid-cols-1 gap-4 sm:grid-cols-2 mt-2">
                 <div className="date-input">
                   <label htmlFor="start-date-monthly">Start Date</label>
                   <input
