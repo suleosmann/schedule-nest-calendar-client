@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import useAxiosPrivate from './../../hooks/useAxiosPrivate';
 import useNavigation from './../../hooks/useNavigation';
 
+
 function ShareCreateEvent({ closeModal }) {
   const POSTEVENT_URL = '/events/create_event';
 
@@ -22,6 +23,24 @@ function ShareCreateEvent({ closeModal }) {
   const [endTime, setEndTime] = useState('');
   const [location, setLocation] = useState('');
   const [attendees, setAttendees] = useState([]);
+
+  //--------------------------------------successModal ------------------------------------------
+  const openSuccessModal = () => {
+    setSuccessModalOpen(true);
+  };
+
+  const closeSuccessModal = () => {
+    setSuccessModalOpen(false);
+  };
+
+  //--------------------------------------errorModal ------------------------------------------
+  const openErrorModal = () => {
+    setErrorModalOpen(true);
+  };
+
+  const closeErrorModal = () => {
+    setErrorModalOpen(false);
+  };
 
   //--------------------------------------event attendees useEffect ----------------------------------
   useEffect(() => {
@@ -63,11 +82,11 @@ function formatDateTimedb(date, time) {
         }
       );
       console.log("Event Created successfully ", response.data);
-      openSuccessModal();
+      
     } catch (err) {
       setErrMsg("Update Failed. Please try again.");
       console.error("Update error:", err);
-      openErrorModal();
+     
     }  
     navigate('/dashboard/SharedCalendar')
     closeModal();
@@ -179,6 +198,8 @@ function formatDateTimedb(date, time) {
           </button>
         </div>
       </div>
+      {isSuccessModalOpen && <SuccessModal type='success' message='Event has been added successfully to your calendar!' closeModal={closeSuccessModal} />}
+      {isErrorModalOpen && <ErrorModal type='error' message={errMsg} closeModal={closeErrorModal} />}
     </div>
   );
 }
