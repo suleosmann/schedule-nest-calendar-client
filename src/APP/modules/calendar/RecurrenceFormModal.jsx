@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 
-function RecurrenceFormModal({ closeRecurrenceModal }) {
+function RecurrenceFormModal({ closeRecurrenceModal, onSave }) {
   const [recurrence, setRecurrence] = useState('');
+  const [startDate, setStartDate] = useState(new Date().toISOString().slice(0, 10));
+  const [endDate, setEndDate] = useState('');
+  const [selectedDays, setSelectedDays] = useState([]);
+  const [dayOfMonth, setDayOfMonth] = useState(1);
 
-  // Function to handle closing the recurrence form
+  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+
   const handleClose = () => {
     closeRecurrenceModal();
   };
@@ -23,31 +29,24 @@ function RecurrenceFormModal({ closeRecurrenceModal }) {
     </div>
   );
 
-
-  // Function to handle saving the recurrence options
   const handleRecurrenceSave = () => {
-    // Here you would handle the recurrence logic
+    const options = {
+      recurrence: recurrence.toLowerCase(),
+      startDate:startDate,
+      endDate:endDate,
+      selectedDays:selectedDays,
+      dayOfMonth:dayOfMonth
+    }
     console.log(recurrence);
-    // Then close the modal
+    onSave(options);
     closeRecurrenceModal();
   };
-
-  const [allDay, setAllDay] = useState(false);
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [selectedDays, setSelectedDays] = useState([]);
 
   const toggleDay = (day) => {
     setSelectedDays(prevDays =>
       prevDays.includes(day) ? prevDays.filter(d => d !== day) : [...prevDays, day]
     );
   };
-
-  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-  const [dayOfMonth, setDayOfMonth] = useState(1);
-
-
 
   const renderRecurrenceForm = () => {
     switch (recurrence) {
@@ -166,8 +165,6 @@ function RecurrenceFormModal({ closeRecurrenceModal }) {
           </select>
         </div>
         {renderRecurrenceForm()}
-
-        {/* Buttons for saving and canceling */}
         <div className="flex items-center justify-end">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

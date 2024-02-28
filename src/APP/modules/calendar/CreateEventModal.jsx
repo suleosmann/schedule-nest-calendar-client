@@ -18,26 +18,64 @@ function CreateEventModal({ closeModal }) {
 
   const [showRecurrenceModal, setShowRecurrenceModal] = useState(false);
 
-  // State variables to hold data
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
-  const [location, setLocation] = useState("");
+  //----------------------------variables in create event modal --------------------------------
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
+  const [location, setLocation] = useState('');
   const [attendees, setAttendees] = useState([]);
-  const [recurrence, setRecurrence] = useState(false); // Assuming it's a boolean value
-  const [count, setCount] = useState(1);
-  const [interval, setInterval] = useState(1); // Assuming it's a number
-  const [byweekday, setByWeekday] = useState([]); // Assuming it's an array of weekdays (e.g., ['MO', 'TU'])
-  const [bymonthday, setByMonthday] = useState([]); // Assuming it's an array of monthdays (e.g., [1, 15])
-  const [errMsg, setErrMsg] = useState("");
 
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  //--------------------------processed variables to be sent -----------------------------------
+  const [recurrence, setRecurrence] = useState(); 
+  const [count, setCount] = useState(1); 
+  const [interval, setInterval] = useState(1);
+  const [byweekday, setByWeekday] = useState([]); 
+  const [bymonthday, setByMonthday] = useState([]); 
+  const [errMsg,setErrMsg] = useState('')
 
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [users, setUsers] = useState([]);
+//------------------------------------recurrence data being received -----------------------------------
+
+  const handleRecurrenceSave = (options) => {
+    console.log('recurrence options:',options);
+    setByWeekday(options.selectedDays);
+    setByMonthday(options.dayOfMonth);
+    setRecurrence(options.recurrence);
+    setCount(recurrenceLogic(options.startDate, options.endDate, options.recurrence));
+    closeRecurrenceModal();
+  };
+
+  //---------------------------------------function for recurrence --------------------------------------
+function recurrenceLogic(startDate, endDate, recurrence) {
+  let count = 0;
+
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  if (recurrence === 'weekly') {
+    // Calculate number of weeks between start and end date
+    const millisecondsPerWeek = 7 * 24 * 60 * 60 * 1000;
+    const diffTime = Math.abs(end - start);
+    const diffWeeks = Math.ceil(diffTime / millisecondsPerWeek);
+    count = diffWeeks;
+  } else if (recurrence === 'daily') {
+    // Calculate number of days between start and end date
+    const millisecondsPerDay = 24 * 60 * 60 * 1000;
+    const diffTime = Math.abs(end - start);
+    const diffDays = Math.ceil(diffTime / millisecondsPerDay);
+    count = diffDays;
+  } else if (recurrence === 'monthly') {
+    // Calculate number of months between start and end date
+    const diffMonths = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+    count = diffMonths;
+  }
+
+  return count;
+}
+
 
   const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
@@ -100,14 +138,47 @@ function CreateEventModal({ closeModal }) {
     setAttendees(selectedUsers);
   };
 
-  //--------------------------------------saving event to api ------------------------------------------
+//--------------------------------------function to fomat date for database--------------------------
+function formatDateTimedb(date, time) {
+  const [year, month, day] = date.split('-');
+  const [hours, minutes] = time.split(':');
+   `${year}-${month}-${day}T${hours}:${minutes}:00`;
+  return `${year}-${month}-${day}T${hours}:${minutes}:00`;
+}
+
+//---------------------------------------function for recurrence --------------------------------------
+function recurrenceLogic(startDate, endDate, recurrence, selectedDays, dayOfMonth) {
+  let count = 0;
+
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  if (recurrence === 'weekly') {
+    // Calculate number of weeks between start and end date
+    const millisecondsPerWeek = 7 * 24 * 60 * 60 * 1000;
+    const diffTime = Math.abs(end - start);
+    const diffWeeks = Math.ceil(diffTime / millisecondsPerWeek);
+    count = diffWeeks;
+  } else if (recurrence === 'daily') {
+    // Calculate number of days between start and end date
+    const millisecondsPerDay = 24 * 60 * 60 * 1000;
+    const diffTime = Math.abs(end - start);
+    const diffDays = Math.ceil(diffTime / millisecondsPerDay);
+    count = diffDays;
+  } else if (recurrence === 'monthly') {
+    // Calculate number of months between start and end date
+    const diffMonths = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+    count = diffMonths;
+  }
+
+  return count;
+}
+
+//--------------------------------------saving event to api ------------------------------------------
   const handleSave = async () => {
-    const start_time = new Date(`${date}T${startTime}:00`)
-      .toISOString()
-      .slice(0, 19);
-    const end_time = new Date(`${date}T${endTime}:00`)
-      .toISOString()
-      .slice(0, 19);
+    const start_time =  formatDateTimedb(date, startTime);
+    const end_time= formatDateTimedb(date, startTime);
+    console.log( 'title: ',title,' description: ', description,' start_time: ', start_time, 'end_time: ',end_time, 'location:',location, 'attendees : ',attendees, 'recurrence:', recurrence, 'interval:',interval ,'byweekday:', byweekday, 'bymonthday:',bymonthday , 'count:',count);
 
     try {
       const accessToken = localStorage.getItem("accessToken");
@@ -139,7 +210,8 @@ function CreateEventModal({ closeModal }) {
       setErrMsg("Update Failed. Please try again.");
       console.error("Update error:", err);
       openErrorModal();
-    }
+    }  
+    navigate('/dashboard')
     closeModal();
   };
 
@@ -288,23 +360,9 @@ function CreateEventModal({ closeModal }) {
           </button>
         </div>
       </div>
-      {showRecurrenceModal && (
-        <RecurrenceFormModal closeRecurrenceModal={closeRecurrenceModal} />
-      )}
-      {isSuccessModalOpen && (
-        <SuccessModal
-          type="success"
-          message="Event has been added successfully to your calendar!"
-          closeModal={closeSuccessModal}
-        />
-      )}
-      {isErrorModalOpen && (
-        <ErrorModal
-          type="error"
-          message={errMsg}
-          closeModal={closeErrorModal}
-        />
-      )}
+      {showRecurrenceModal && <RecurrenceFormModal closeRecurrenceModal={closeRecurrenceModal} onSave={handleRecurrenceSave} />}
+      {isSuccessModalOpen && <SuccessModal type='success' message='Event has been added successfully to your calendar!' closeModal={closeSuccessModal} />}
+      {isErrorModalOpen && <ErrorModal type='error' message={errMsg} closeModal={closeErrorModal} />}
     </div>
   );
 }

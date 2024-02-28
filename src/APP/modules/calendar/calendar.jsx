@@ -39,9 +39,11 @@ export default function MyCalendar() {
     setSelectedEvent(null);
   };
 
-  function formatDateString(dateString) {
-    const [year, month, day, hours, minutes, seconds] = dateString.split(/[T:-]/).map((part, index) => index === 0 ? parseInt(part, 10) : parseInt(part, 10) - 1);
-    return new Date(Date.UTC(year, month, day, hours, minutes, seconds));
+  function formatDateString(dbDate) {
+    const dateObj = new Date(dbDate);
+  const options = { weekday: 'short', month: 'short', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  const formattedDate = dateObj.toLocaleString('en-US', options).replace(/,/g, '');
+  return formattedDate;
   }
   
 

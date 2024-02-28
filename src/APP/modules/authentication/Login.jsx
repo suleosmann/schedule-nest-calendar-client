@@ -75,7 +75,7 @@ function Login() {
   
 
   return (
-    <div className="col-span-1 px-8 py-4 bg-gray-100 rounded-lg shadow-md">
+    <div className="col-span-1 px-8 py-4 bg-gray-50 rounded-lg shadow-md">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-yellow-500">Log in</h1>
         <div className="border-b border-black w-full mx-auto mt-4"></div>

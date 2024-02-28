@@ -36,10 +36,8 @@ function NotifyModal({ type, message, event, closeModal }) {
     try {
       const accessToken = localStorage.getItem("accessToken");
 
-      const response = await axios.delete(`/events/manage_event/${id}`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+      const response = await axiosPrivate.delete(`/events/manage_event/${id}`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
       });
       console.log(response?.data);
       navigate('/dashboard');
