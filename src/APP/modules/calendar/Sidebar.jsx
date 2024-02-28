@@ -4,6 +4,8 @@ import { Sidebar } from 'flowbite-react';
 import { HiCalendar, HiUser, HiLogout, HiOutlinePlus } from 'react-icons/hi';
 import CreateEventModal from './CreateEventModal'; // Notification component
 import useNavigation from '../../hooks/useNavigation'
+import SearchCalendar from '../calendarshare/SearchCalendar';
+import ViewOtherCalendars from '../calendarshare/ViewOtherCalendars'
 
 function Sidenav() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,6 +33,8 @@ function Sidenav() {
               Profile
             </Sidebar.Item>
           </Sidebar.ItemGroup>
+          <SearchCalendar/>
+          <ViewOtherCalendars/>
           <Sidebar.ItemGroup>
             <Sidebar.Item className='mt-96 border-white bg-yellow-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900'  icon={HiLogout}>
               Log Out

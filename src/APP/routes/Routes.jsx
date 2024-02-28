@@ -10,6 +10,7 @@ import UpdatePwd from './../modules/authentication/updatePwd'
 
 import Dashboard from '../modules/calendar/Dashboard'
 import Calendar from './../modules/calendar/calendar'
+import SharedCalendar from './../modules/calendarshare/SharedCalendar';
 
 import Profile from './../modules/profile/VeiwProfile'
 
@@ -28,6 +29,7 @@ export default function AllRoutes() {
         <Route path='/dashboard' element={<Dashboard />}>
           <Route path='' element={<Calendar />} />
           <Route path='profile' element={<Profile />} />
+          <Route path='SharedCalendar' element={<SharedCalendar />} />
         </Route>
       </Routes>
     </BrowserRouter>
