@@ -41,8 +41,8 @@ const SearchCalendar = () => {
           user_id: userId
         }, {
           headers: {
-            Authorization: `Bearer ${accessToken}`
-          }
+            Authorization: `Bearer ${accessToken}`,
+          },
         });
         
         console.log('Response:', response.data);

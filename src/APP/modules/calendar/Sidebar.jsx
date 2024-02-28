@@ -7,13 +7,23 @@ import useNavigation from '../../hooks/useNavigation'
 import SearchCalendar from '../calendarshare/SearchCalendar';
 import ViewOtherCalendars from '../calendarshare/ViewOtherCalendars'
 
+
 function Sidenav() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigation(); // Use the custom hook
 
+
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+  const logout = () => {
+    // Remove the accessToken from localStorage
+    localStorage.removeItem('accessToken');
+
+  
+    // Redirect the user to the login page or any other desired location
+    navigate('/');
+  }
 
   return (
     <div className='sideBar'>
@@ -36,7 +46,7 @@ function Sidenav() {
           <SearchCalendar/>
           <ViewOtherCalendars/>
           <Sidebar.ItemGroup>
-            <Sidebar.Item className='mt-96 border-white bg-yellow-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900'  icon={HiLogout}>
+            <Sidebar.Item className='mt-96 border-white bg-yellow-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' onClick={logout} icon={HiLogout}>
               Log Out
             </Sidebar.Item>
           </Sidebar.ItemGroup>

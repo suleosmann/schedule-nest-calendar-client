@@ -1,6 +1,7 @@
 import React from 'react';
-import useAxiosPrivate from './../hooks/useAxiosPrivate';
+// import useAxiosPrivate from './../hooks/useAxiosPrivate';
 import useNavigation from './../hooks/useNavigation';
+import axios from './../api/axios'
 ///  option to delete
 
 function NotifyModal({ type, message, event, closeModal }) {
@@ -10,7 +11,7 @@ function NotifyModal({ type, message, event, closeModal }) {
 
   if (type === 'deletion') {
     bgColor = 'bg-red-100';
-    handleEvent =() => {handleDelete};
+    handleEvent =handleDelete;
     text = event.title
   } else if (type === 'success'){
     bgColor = 'bg-green-100';
@@ -18,29 +19,38 @@ function NotifyModal({ type, message, event, closeModal }) {
     text = 'SUCCESS!'
   }else  if (type === 'error'){
     bgColor = 'bg-red-100';
-    handleEvent =() => {closeModal};
+    handleEvent =closeModal;
     text = "ERROR!"
   }else {
     bgColor = 'bg-gray-100';
-    handleEvent =() => {closeModal};
+    handleEvent =closeModal;
     text = 'System Notification'
   }
   
-  const axiosPrivate = useAxiosPrivate();
+  // const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigation(); 
   const id = event.id;
+  console.log(id)
 
-  const handleDelete = async () => {
+  async function handleDelete() {
     try {
       const accessToken = localStorage.getItem("accessToken");
 
-      const response = await axiosPrivate.delete('/manage_event/{id}', {
-        headers: { Authorization: `Bearer ${accessToken}` },
+      const response = await axios.delete(`/events/manage_event/${id}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       });
       console.log(response?.data);
       navigate('/dashboard');
     } catch (err) {
-      console.error('Deletion failed:', err.response || err);
+      if (err.response) {
+        console.error('Deletion failed:', err.response.data);
+      } else if (err.request) {
+        console.error('Deletion failed: Request made but no response received');
+      } else {
+        console.error('Deletion failed:', err.message);
+      }
     }
     closeModal();
   };
@@ -55,7 +65,7 @@ function NotifyModal({ type, message, event, closeModal }) {
           {event.title}
         </h3>
         <div className='border border-gray-300 mt-4 mb-8'></div>
-        <div className={`px-4 py-2 rounded-md text-center ${bgColor}`}>
+        <div className="px-4 py-2 rounded-md text-center ${bgColor}}">
          <p>{message}</p> 
          <p>Confirm ?</p>
         </div>
