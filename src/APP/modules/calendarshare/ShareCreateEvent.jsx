@@ -44,7 +44,7 @@ function ShareCreateEvent({ closeModal }) {
   //--------------------------------------event attendees useEffect ----------------------------------
   useEffect(() => {
     const user_id = localStorage.getItem("sharedUserId");
-    setAttendees([{ user_id }]); // Set attendees as an array containing the user_id from local storage
+    setAttendees([user_id]); // Set attendees as an array containing the user_id from local storage
   }, []);
 
   //--------------------------------------function to fomat date for database--------------------------
@@ -58,7 +58,7 @@ function formatDateTimedb(date, time) {
   //--------------------------------------saving event to api ------------------------------------------
   const handleSave = async () => {
     const start_time =  formatDateTimedb(date, startTime);
-    const end_time= formatDateTimedb(date, startTime);
+    const end_time= formatDateTimedb(date, endTime);
     console.log( 'title: ',title,' description: ', description,' start_time: ', start_time, 'end_time: ',end_time, 'location:',location, 'attendees : ',attendees);
 
     try {
@@ -87,7 +87,7 @@ function formatDateTimedb(date, time) {
       console.error("Update error:", err);
      
     }  
-    navigate('/dashboard/SharedCalendar')
+    // navigate('/dashboard/SharedCalendar')
     closeModal();
   };
   

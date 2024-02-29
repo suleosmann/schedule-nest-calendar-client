@@ -112,9 +112,8 @@ function recurrenceLogic(startDate, endDate, recurrence) {
   //--------------------------------------event attendees useEffect ----------------------------------
   useEffect(() => {
     const controller = new AbortController();
-
+  
     const fetchUsers = async () => {
-      const controller = new AbortController();
       try {
         const response = await useAxios.get(GET_USERS_URL, {
           signal: controller.signal,
@@ -124,18 +123,20 @@ function recurrenceLogic(startDate, endDate, recurrence) {
         console.error("Error fetching Users", error);
       }
     };
-
+  
     fetchUsers();
+  
     return () => {
       controller.abort();
     };
-  }, [useAxiosPrivate]);
+  }, [selectedUsers]);
+  
 
   const handleChange = (selectedUser) => {
     console.log("Selected User:", selectedUser);
     setSelectedUsers([...selectedUsers, selectedUser]);
     console.log(selectedUsers);
-    setAttendees(selectedUsers);
+    
   };
 
 //--------------------------------------function to fomat date for database--------------------------
@@ -177,7 +178,7 @@ function recurrenceLogic(startDate, endDate, recurrence, selectedDays, dayOfMont
 //--------------------------------------saving event to api ------------------------------------------
   const handleSave = async () => {
     const start_time =  formatDateTimedb(date, startTime);
-    const end_time= formatDateTimedb(date, startTime);
+    const end_time= formatDateTimedb(date, endTime);
     console.log( 'title: ',title,' description: ', description,' start_time: ', start_time, 'end_time: ',end_time, 'location:',location, 'attendees : ',attendees, 'recurrence:', recurrence, 'interval:',interval ,'byweekday:', byweekday, 'bymonthday:',bymonthday , 'count:',count);
 
     try {

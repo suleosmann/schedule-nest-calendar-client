@@ -49,47 +49,47 @@ export default function MyCalendar() {
   }
   
 //------------------------------------------get calendar events -----------------------------------------------------
-  useEffect(() => {
-    const controller = new AbortController();
-  
-    const fetchEvents = async () => {
-      const accessToken = localStorage.getItem("accessToken");
+useEffect(() => {
+  const controller = new AbortController();
 
-      console.log("Access Token:", accessToken);
+  const fetchEvents = async () => {
+    const accessToken = localStorage.getItem("accessToken");
 
-      try {
-        const response = await axiosPrivate.get('/users/calendar-events', {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-          signal: controller.signal,
-        });
-        console.log('Response:', response.data);
-  
-        setEvents(
-          response.data.map(event => ({
-            id: event.id,
-            title: event.title,
-            description: event.description,
-            location: event.location,
-            // Parse start_time and end_time strings to Date objects
-            start: formatDateString(event.start_time), // Ensure start_time is in UTC or local time
-            end: formatDateString(event.end_time),     // Ensure end_time is in UTC or local time
-            allDay: false, // Assuming events have specific start and end times
-          }))
-        );
-      } catch (error) {
-        console.error('Error fetching calendar events:', error);
-        // Handle error and navigate if needed
-      }
-    };
-  
-    fetchEvents();
-  
-    return () => {
-      controller.abort();
-    };
-  }, [axiosPrivate]);
+    console.log("Access Token:", accessToken);
+
+    try {
+      const response = await axiosPrivate.get('/users/calendar-events', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        signal: controller.signal,
+      });
+      console.log('Response:', response.data);
+
+      setEvents(
+        response.data.map(event => ({
+          id: event.id,
+          title: event.title,
+          description: event.description,
+          location: event.location,
+          start: new Date(event.start_time), // Parse start_time to Date object
+          end: new Date(event.end_time),     // Parse end_time to Date object
+          allDay: false, // Assuming events have specific start and end times
+        }))
+      );
+    } catch (error) {
+      console.error('Error fetching calendar events:', error);
+      // Handle error and navigate if needed
+    }
+  };
+
+  fetchEvents();
+
+  return () => {
+    controller.abort();
+  };
+}, [axiosPrivate]);
+
 
   const handleEventClick = (event) => {
     openModal(event, true);
