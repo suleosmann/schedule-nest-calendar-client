@@ -11,7 +11,7 @@ const Button = ({ children, path }) => {
 
   return (
     <button
-      className="shadow-xl mt-4 mr-6 text-grey-900 px-7 py-3 rounded-md text-sm font-medium bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900"
+      className="shadow-xl mt-4 mr-6 text-grey-900 px-8 py-4 rounded-md text-sm font-medium bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900"
       onClick={handleButtonClick} // Attach the click event handler
     >
       {children}

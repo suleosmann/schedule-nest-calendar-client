@@ -33,20 +33,20 @@ function Sidenav() {
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">ScheduleNest</span>
           </Sidebar.ItemGroup> */}
           <Sidebar.ItemGroup className='flex-col justify-center items-center gap-4 py-6 my-5 c-8'>
-            <Sidebar.Item className='h-20 bg-yellow-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' icon={HiOutlinePlus} onClick={toggleModal}>
+            <Sidebar.Item className='cursor-pointer h-20 bg-yellow-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' icon={HiOutlinePlus} onClick={toggleModal}>
               Create Event
             </Sidebar.Item>
-            <Sidebar.Item className='h-25 bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900'  icon={HiCalendar} onClick={() => navigate('/dashboard')}>
+            <Sidebar.Item className='cursor-pointer h-25 bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900'  icon={HiCalendar} onClick={() => navigate('/dashboard')}>
               Calendar
             </Sidebar.Item>
-            <Sidebar.Item className='h-25 bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' icon={HiUser} onClick={() => navigate('/dashboard/profile')}>
+            <Sidebar.Item className='cursor-pointer h-25 bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' icon={HiUser} onClick={() => navigate('/dashboard/profile')}>
               Profile
             </Sidebar.Item>
           </Sidebar.ItemGroup>
           <ShareCalendarBtn/>
           <ViewOtherCalendars/>
           <Sidebar.ItemGroup>
-            <Sidebar.Item className='mt-48 border border-gray bg-yellow-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' onClick={logout} icon={HiLogout}>
+            <Sidebar.Item className='cursor-pointer mt-48 border border-gray bg-yellow-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' onClick={logout} icon={HiLogout}>
               Log Out
             </Sidebar.Item>
           </Sidebar.ItemGroup>

@@ -7,8 +7,8 @@ const Navbar = () => {
   const navigate = useNavigation(); // Initialize the navigate function from the custom hook
 
   return (
-    <nav className="bg-gradient-to-r from-green-400 to-green-300">
-      <div className="max-w-7xl mx-auto px-4">
+    <nav className="bg-gradient-to-r from-green-400 to-green-300 sticky top-0 z-10">
+      <div className="max-w-7xl mx-auto px-4 ">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <FontAwesomeIcon icon={faStar} className="text-yellow-200 mr-2" />
