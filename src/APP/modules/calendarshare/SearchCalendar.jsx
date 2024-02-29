@@ -1,85 +1,98 @@
-  import React, { useState, useEffect } from "react";
-  import Select from "react-select";
-  import useAxios from "./../../api/axios";
+import React, { useState, useEffect } from "react";
+import Select from "react-select";
+import useAxios from "./../../api/axios";
 
-  const SearchCalendar = () => {
-    const [users, setUsers] = useState([]);
-    const [selectedUser, setSelectedUser] = useState(null);
-    const [selectedUserName, setSelectedUserName] = useState("");
-    const [selectedId, setSelectedId] = useState();
+const SearchCalendar = () => {
+  const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedUserName, setSelectedUserName] = useState("");
+  const [selectedId, setSelectedId] = useState();
+  const [expirationTime, setExpirationTime] = useState(""); // New state for expiration time
 
-    useEffect(() => {
-      const fetchUsers = async () => {
-        try {
-          const response = await useAxios.get("/users/get_all_users");
-          setUsers(response.data);
-        } catch (error) {
-          console.error("Error fetching Users", error);
-          // Handle error and navigate if needed
-        }
-      };
-
-      fetchUsers();
-    }, []);
-
-    const handleChange = (selectedOption) => {
-      setSelectedUser(selectedOption);
-      setSelectedId(selectedOption.value);
-      setSelectedUserName(selectedOption.label);
-    };
-
-    const handleSend = async () => {
-      if (selectedUser) {
-        const accessToken = localStorage.getItem("accessToken");
-        const userId = selectedUser.value;
-
-        try {
-          const response = await useAxios.post(
-            "/calendar/share_calendar",
-            {
-              access_granted_to_id: selectedUser.value,
-              user_id: userId,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-              },
-            }
-          );
-
-          console.log("Response:", response.data);
-          console.log(userId);
-          // Handle success response
-          setSelectedUser(null);
-          setSelectedUserName("");
-          setSelectedId(null);
-        } catch (error) {
-          console.error("Error sharing calendar:", error);
-          // Handle error response
-        }
-      } else {
-        console.error("No user selected");
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await useAxios.get("/users/get_all_users");
+        setUsers(response.data);
+      } catch (error) {
+        console.error("Error fetching Users", error);
+        // Handle error and navigate if needed
       }
     };
-    const handleClear = () => {
-      setSelectedUser(null);
-      setSelectedUserName("");
-      setSelectedId(null);
-    };
 
-    return (
-      <div>
-        Share Calendar
-        <Select
-          value={selectedUser}
-          onChange={handleChange}
-          options={users.map((user) => ({ value: user.id, label: user.name }))}
-          placeholder="Share your calendar..."
-          className="shadow appearance-none border rounded w-full py-2 px-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        />
+    fetchUsers();
+  }, []);
+
+  const handleChange = (selectedOption) => {
+    setSelectedUser(selectedOption);
+    setSelectedId(selectedOption.value);
+    setSelectedUserName(selectedOption.label);
+  };
+
+  const handleSend = async () => {
+    if (selectedUser) {
+      const accessToken = localStorage.getItem("accessToken");
+      const userId = selectedUser.value;
+
+      try {
+        const formattedExpirationTime = expirationTime.replace("T", " ") + ":00"; // Format the expiration time
+        const response = await useAxios.post(
+          "/calendar/share_calendar",
+          {
+            access_granted_to_id: selectedUser.value,
+            user_id: userId,
+            expiration_time: formattedExpirationTime,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        console.log("Response:", response.data);
+        console.log(userId);
+        // Handle success response
+        setSelectedUser(null);
+        setSelectedUserName("");
+        setSelectedId(null);
+        setExpirationTime(""); // Reset expiration time
+      } catch (error) {
+        console.error("Error sharing calendar:", error);
+        // Handle error response
+      }
+    } else {
+      console.error("No user selected");
+    }
+  };
+  
+  const handleClear = () => {
+    setSelectedUser(null);
+    setSelectedUserName("");
+    setSelectedId(null);
+    setExpirationTime(""); // Clear expiration time when clearing selection
+  };
+
+  return (
+    <div>
+      Share Calendar
+      <Select
+        value={selectedUser}
+        onChange={handleChange}
+        options={users.map((user) => ({ value: user.id, label: user.name }))}
+        placeholder="Enter a  name..."
+        className=" pb-6 shadow appearance-none  w-full py-2 px-1   "
+      />
+      <input
+      type="datetime-local"
+      value={expirationTime}
+      onChange={(e) => setExpirationTime(e.target.value)}
+      className="shadow appearance-none border rounded w-full py-2 px-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    />
+      <div className="mt-6">
         <button
           onClick={handleSend}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           Send
         </button>
@@ -87,7 +100,8 @@
           Clear
         </button>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
-  export default SearchCalendar;
+export default SearchCalendar;

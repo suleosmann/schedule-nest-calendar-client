@@ -46,7 +46,7 @@ function Sidenav() {
           <ShareCalendarBtn/>
           <ViewOtherCalendars/>
           <Sidebar.ItemGroup>
-            <Sidebar.Item className='mt-96 border-white bg-yellow-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' onClick={logout} icon={HiLogout}>
+            <Sidebar.Item className='mt-48 border-white bg-yellow-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900' onClick={logout} icon={HiLogout}>
               Log Out
             </Sidebar.Item>
           </Sidebar.ItemGroup>

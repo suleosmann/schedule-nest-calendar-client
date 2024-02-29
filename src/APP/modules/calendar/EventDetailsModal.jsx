@@ -53,7 +53,7 @@ function EventDetailsModal({ event, closeModal }) {
             <div className='ml-2'>
             <p> End Time</p>
             <p>
-              {event.start.toString().slice(16,24)}
+              {event.end.toString().slice(16,24)}
             </p>
           </div>
           </div>

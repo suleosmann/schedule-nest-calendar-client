@@ -37,7 +37,7 @@ function RecurrenceFormModal({ closeRecurrenceModal, onSave }) {
       selectedDays:selectedDays,
       dayOfMonth:dayOfMonth
     }
-    console.log(recurrence);
+    console.log("Weekly Data Sent to Backend:", options); // Logging the weekly data
     onSave(options);
     closeRecurrenceModal();
   };

@@ -14,9 +14,9 @@ const ShareCalendarBtn = () => {
         Share Calendar
       </button>
       {showDropdown && (
-        <div className="absolute top-120 left-0 z-10 bg-white border shadow-lg rounded-lg">
+        <div className="absolute top-96 left-64 z-10 bg-white border shadow-lg rounded-lg">
           {/* Render SearchCalendar component */}
-          <div className="p-4">
+          <div className="p-6">
             <SearchCalendar />
           </div>
           
