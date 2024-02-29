@@ -2,6 +2,7 @@ import React from 'react'
 import CommonNavbar from '../../components/CommonNavbar'
 import Footer  from '../../components/Footer'
 import { Outlet } from 'react-router-dom'
+import imagereg from "../../assets/imagereg.jpeg"
 
 export default function authentication() {
   return (
@@ -13,7 +14,7 @@ export default function authentication() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0 px-2">
             <div className="col-span-1 bg-green-500 flex justify-center items-center">
               {/* Add your image here */}
-              <img src="./src/APP/assets/imagereg.jpeg" alt="calender" className="w-full h-auto rounded-lg object-cover" />
+              <img src={imagereg} alt="calender" className="w-full h-auto rounded-lg object-cover" />
             </div>
             <Outlet/>
           </div>

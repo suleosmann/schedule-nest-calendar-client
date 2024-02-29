@@ -103,7 +103,7 @@ useEffect(() => {
   
   return (
     <div key={Math.random()} className="flex">
-      <div className="bg-green-100">
+      <div className="bg-green-100 mt-4">
         <Calendar
           localizer={localizer}
           events={events}
