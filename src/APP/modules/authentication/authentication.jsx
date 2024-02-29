@@ -11,11 +11,11 @@ export default function authentication() {
         {/* <img src='https://i.pinimg.com/564x/24/a8/82/24a882450854eafa3476c945b615914d.jpg' className='w-full h-full object-cover absolute mix-blend-overlay'/> */}
             <div className="container mx-auto px-2 py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0 px-2">
-            <div className="col-span-1 bg-green-500 flex justify-center items-center">
+            <div className=" img  col-span-1 bg-green-500 flex justify-center items-center">
               {/* Add your image here */}
-              <img src="./src/APP/assets/imagereg.jpeg" alt="calender" className="w-full h-auto rounded-lg object-cover" />
+              <Outlet />
             </div>
-            <Outlet/>
+            
           </div>
         </div>
       </div>

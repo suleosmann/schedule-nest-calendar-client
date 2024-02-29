@@ -74,3 +74,20 @@ span{
     justify-content: flex-start;
     align-items: flex-end;
 }
+
+.img {
+    background-image: url('./assets/greenplants.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 80vh;
+    width: 50vw;
+    border-radius: 1rem;
+    margin-left: 20rem;
+    
+}
+
+.login{
+    padding-right: 40rem;
+
+}
