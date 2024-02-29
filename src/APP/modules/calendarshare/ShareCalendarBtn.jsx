@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SearchCalendar from './SearchCalendar';
+import { HiOutlineShare } from "react-icons/hi";
 
 const ShareCalendarBtn = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -8,7 +9,7 @@ const ShareCalendarBtn = () => {
     <div className='mt-48'>
       <button 
         type="button" 
-        className="text-black bg-green-300 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-20 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        className="bg-green-300 h-25 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900 font-medium rounded-lg text-sm px-20 py-2.5 me-2 mb-2" icon={HiOutlineShare}
         onClick={() => setShowDropdown(!showDropdown)}
       >
         Share Calendar

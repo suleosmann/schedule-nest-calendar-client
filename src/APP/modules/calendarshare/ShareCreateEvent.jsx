@@ -183,14 +183,14 @@ function formatDateTimedb(date, time) {
         {/* Buttons for saving and canceling */}
         <div className="flex items-center justify-between">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900 hover:shadow-md shadow border border-gray-500 hover:border-transparent rounded focus:outline-none focus:shadow-outline font-bold py-2 px-4 rounded "
             type="button"
             onClick={handleSave}
           >
             Save Event
           </button>
           <button
-            className="bg-transparent hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded"
+            className="bg-yellow-300 hover:bg-red-400 active:bg-red-600 focus:outline-none focus:ring focus:ring-green-900 hover:shadow-md shadow border border-gray-500 hover:border-transparent rounded focus:outline-none focus:shadow-outline font-semibold hover:text-white py-2 px-4"
             onClick={closeModal}
           >
             Cancel

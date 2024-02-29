@@ -63,7 +63,7 @@ function EventDetailsModal({ event, closeModal }) {
          <div>
           <button
             type="button"
-            className="bg-transparent hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded"
+            className="bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900 hover:shadow-md shadow border border-gray-500 hover:border-transparent rounded focus:outline-none focus:shadow-outline py-2 px-4 border border-gray-500 hover:border-transparent hover:text-white rounded"
             onClick={openEditModal}
           >
             Edit
@@ -72,7 +72,7 @@ function EventDetailsModal({ event, closeModal }) {
           <div>
           <button
             type="button"
-            className="bg-transparent space-x-5 hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded"
+            className="bg-yellow-300 hover:bg-red-400 active:bg-red-600 focus:outline-none focus:ring focus:ring-green-900 hover:shadow-md shadow border border-gray-500 hover:border-transparent rounded focus:outline-none focus:shadow-outline hover:text-white py-2 px-4  rounded"
             onClick={openDeleteModal}
           >
             Delete

@@ -81,7 +81,7 @@ export default function ViewProfile() {
                           Delete Account
                         </button>
                       </div>
-                      <div className="mt-10 py-4 bg-white border rounded-lg shadow-md ">
+                      <div className="mt-10 py-4  border rounded-lg shadow-md ">
                           <div className="text-left ml-3">
                             <h4 className="mb-4 leading-relaxed text-grey-900 font-bold text-3xl">
                               Contact Details
@@ -99,7 +99,7 @@ export default function ViewProfile() {
                           </div>
                         </div>
                         <div className="mt-10 py-10 border-t border-gray-500 text-center">
-                        <div className="mt-6 py-6 bg-green-300 border rounded-lg shadow-md">
+                        <div className="mt-6 py-6 border rounded-lg shadow-md">
                           <div className="">
                             <div className="flex flex-wrap ">
                               <div className="w-full text-left ml-3 lg:w-9/12 px-4">

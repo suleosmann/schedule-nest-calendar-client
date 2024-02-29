@@ -167,14 +167,14 @@ function RecurrenceFormModal({ closeRecurrenceModal, onSave }) {
         {renderRecurrenceForm()}
         <div className="flex items-center justify-end">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900 hover:shadow-md shadow border border-gray-500 hover:border-transparent rounded focus:outline-none focus:shadow-outline hover:text-white font-bold font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="button"
             onClick={handleRecurrenceSave}
           >
             Save
           </button>
           <button
-            className="ml-4 bg-transparent hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded"
+            className="ml-4 bg-yellow-300 hover:bg-red-400 active:bg-red-600 focus:outline-none focus:ring focus:ring-green-900 hover:shadow-md shadow border border-gray-500 hover:border-transparent rounded focus:outline-none focus:shadow-outline hover:text-white font-semibold hover:text-white py-2 px-4 border border-gray-500 rounded"
             onClick={handleClose}
           >
             Cancel
