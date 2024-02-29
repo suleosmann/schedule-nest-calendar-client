@@ -4,6 +4,8 @@ import DeleteModal from "./DeleteModal"; // Ensure this import is correct
 import EditProfile from "./EditProfile"; // Ensure this import is correct
 import SuleImage from "../../assets/sule.jpg";
 import BackgroundImage from "../../assets/calendar_image.jpg";
+import calenderbg from "../../assets/calendarbg.jpg"
+import openpeeps from "../../assets/openpeeps.png";
 
 export default function ViewProfile() {
   const axiosPrivate = useAxiosPrivate();
@@ -50,7 +52,7 @@ export default function ViewProfile() {
               <div style={{  background: "linear-gradient(to bottom, rgba(240, 240, 240, 0.5), rgba(91, 198, 71, 0.5))" }} 
               className="relative rounded-lg shadow-xl absolute top-64 mx-2 ml-5 left-1/2 px-36 transform -translate-x-1/2">
               <img
-                  src={SuleImage} 
+                  src={openpeeps} 
                   alt="Profile picture"
                   className="py-2 shadow-xl rounded-full border-opacity-100 w-32 h-32"      
                     />
