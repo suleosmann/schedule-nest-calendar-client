@@ -1,14 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
-import calendarImage from "../../assets/calendarbg.jpg";
+import calendarImage from "../../assets/Floral 2023 Wall Calendar.jpeg";
 import Button from "../../components/Button"; // Adjust the path as needed
 import useNavigation from "../../hooks/useNavigation"; // Import the custom hook
 
 const HeroSection = () => {
-  const navigate = useNavigation(); // Initialize the navigate function from the custom hook
+  const navigate = useNavigation();
 
   return (
-    <div className="flex mb-64">
+    <div className="flex mb-50 bg-lime-200 relative">
       <div className="w-2/6 h-80 mt-32 ml-64">
         <h1 className="text-6xl pb-6 italic">
           Stay Connected, Stay Organized with Ease!
@@ -20,15 +20,20 @@ const HeroSection = () => {
         <Button path="/authentication/signup">Sign Up</Button>
         <Button path="/authentication">Sign In</Button>
       </div>
-      <div className="w-2/6 relative ml-32 mt-64 ">
-        <img
-          src={calendarImage}
-          alt="Calendar"
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-        />
+      <div className="w-2/6 relative ml-auto mt-32 mr-64">
+        <div className="bg-lime-200 aspect-w-16 aspect-h-9">
+          <img
+            src={calendarImage}
+            alt="Calendar"
+            className="object-cover w-full h-full"
+            style={{ position: "absolute", top: "-5%", right: "-50" }}
+          />
+        </div>
       </div>
     </div>
   );
 };
 
 export default HeroSection;
+
+
