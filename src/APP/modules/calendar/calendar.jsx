@@ -103,13 +103,13 @@ useEffect(() => {
   
   return (
     <div key={Math.random()} className="flex">
-      <div className="calendar-container">
+      <div className="bg-green-100">
         <Calendar
           localizer={localizer}
           events={events}
           startAccessor="start"
           endAccessor="end"
-          style={{ height: 810, width:1590 }} // Adjust height as needed
+          style={{ height: 860, width:1590 }} // Adjust height as needed
           onSelectEvent={handleEventClick} // Attach event click handler
           onSelectSlot={handleSlotSelect} // Attach slot select handler
           selectable={true} // Make sure that slots are selectable

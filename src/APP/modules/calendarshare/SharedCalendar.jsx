@@ -71,13 +71,13 @@ export default function SharedCalendar() {
 
   return (
     <div key={Math.random()} className="flex">
-      <div className="calendar-container">
+      <div className="bg-green-100">
         <Calendar
           localizer={localizer}
           events={events}
           startAccessor="start"
           endAccessor="end"
-          style={{ height: 900, width: 1590 }}
+          style={{ height: 860, width: 1590 }}
           onSelectEvent={handleEventClick}
           onSelectSlot={handleSlotSelect}
           selectable={true}
