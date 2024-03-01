@@ -75,15 +75,15 @@ function Login() {
   
 
   return (
-    <div className="col-span-1 px-8 py-4 bg-gray-50 rounded-lg shadow-md">
+    <div className="login col-span-1 px-8 py-4 bg-transparent  rounded-lg shadow-md">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-yellow-500">Log in</h1>
+        <h1 className="text-4xl font-bold text-white">Log in</h1>
         <div className="border-b border-black w-full mx-auto mt-4"></div>
         <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
       </div>
       <form action="#" className="space-y-8">
         <div className="form-control">
-          <label htmlFor="email" className="block text-base font-medium text-gray-700">
+          <label htmlFor="email" className="block text-base font-medium font-extrabold text-white">
             Enter your Email
           </label>
           <div className="relative">
@@ -93,12 +93,12 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
               value={email}
               required
-              className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-full italic rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
           </div>
         </div>
         <div className="form-control">
-          <label htmlFor="password" className="block text-base font-medium text-gray-700">
+          <label htmlFor="password" className="block text-base font-medium text-white">
             Enter your password
           </label>
           <div className="relative">
@@ -106,13 +106,13 @@ function Login() {
               onChange={(e) => setPwd(e.target.value)}
               value={password}
               required
-              className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-full italic rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
           </div>
         </div>
         
         <button type="submit"  onClick={handleLogin}
-          className="btn bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  w-full rounded-md py-2 px-4 text-center text-base font-medium shadow-sm hover:from-pink-500 hover:to-yellow-500 active:from-yellow-400 active:to-pink-400  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="btn bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  w-full rounded-md py-2 px-4 text-center text-base font-medium shadow-sm hover:from-pink-500 hover:to-yellow-500 active:from-yellow-400 active:to-pink-400  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 hover:text-white"
         >
           Log in
         </button>
@@ -122,10 +122,10 @@ function Login() {
           <hr className="w-full bg-gray-200" />
         </div>
         <div className="grid space-y-4  ">
-          <Link to="updatepwd" className="text-sm text-center text-blue-600 hover:underline">
+          <Link to="updatepwd" className="text-sm italic text-center text-blue-600 hover:underline">
             Forgot Password ?
           </Link>
-          <Link to="signup" className="text-sm text-center text-blue-600 hover:underline">
+          <Link to="signup" className="text-sm italic text-center text-blue-600 hover:underline">
             Don't have an account? Sign Up
           </Link>
         </div>

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 
-import useAxiosPrivate from "./../../hooks/useAxiosPrivate";
-import useAxios from "./../../api/axios";
-import useNavigation from "./../../hooks/useNavigation";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import useAxios from "../../api/axios";
+import useNavigation from "../../hooks/useNavigation";
 
 import RecurrenceFormModal from "./RecurrenceFormModal";
-import SuccessModal from "./../../components/NotifyModal";
-import ErrorModal from "./../../components/NotifyModal";
+import SuccessModal from "../../components/NotifyModal";
+import ErrorModal from "../../components/NotifyModal";
 
-function CreateEventModal({ closeModal }) {
+function CreateEventModal({ event, closeModal }) {
   const POSTEVENT_URL = "/events/create_event";
   const GET_USERS_URL = "/users/get_all_users";
 
@@ -19,12 +19,12 @@ function CreateEventModal({ closeModal }) {
   const [showRecurrenceModal, setShowRecurrenceModal] = useState(false);
 
   //----------------------------variables in create event modal --------------------------------
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState(event?.title || '');
+  const [description, setDescription] = useState(event?.description || '');
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState(event?.description || '');
   const [attendees, setAttendees] = useState([]);
 
   //--------------------------processed variables to be sent -----------------------------------
@@ -84,7 +84,7 @@ function CreateEventModal({ closeModal }) {
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
 
   const [currentDate, setCurrentDate] = useState(
-    new Date().toISOString().slice(0, 10)
+    event?.start.toString().slice(0,16) || new Date().toISOString().slice(0, 10)
   );
 
   //--------------------------------------successModal ------------------------------------------
@@ -135,9 +135,9 @@ function CreateEventModal({ closeModal }) {
   }, [selectedUsers]);
 
   const handleChange = (selectedUser) => {
-    setSelectedUsers(prevSelectedUsers => {
-      const newSelectedUsers = [ ...prevSelectedUsers, selectedUser];
-      const newAttendees = newSelectedUsers.map(user => user.value);
+    setSelectedUsers((prevSelectedUsers) => {
+      const newSelectedUsers = [...prevSelectedUsers, selectedUser];
+      const newAttendees = newSelectedUsers.map((user) => user.value);
       setAttendees(newAttendees);
       return newSelectedUsers;
     });
@@ -360,28 +360,26 @@ function CreateEventModal({ closeModal }) {
           {users.length > 0 && (
             <Select
               onChange={handleChange}
-              options={users.map((user)=>({value: user.id, label: user.name}))}
+              options={users.map((user) => ({
+                value: user.id,
+                label: user.name,
+              }))}
               placeholder="Add guest..."
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           )}
           <div className=" flex flex-row flex-wrap appearance-none border rounded py-2 px-3 ">
-          {selectedUsers.map((user) => (
-            <p key={user.value} className="text-gray-700 text-base border border-current rounded mx-2 my-1 py-2 px-2 font-bold">
-               {user.label}
-            </p>
-          ))}
+            {selectedUsers.map((user) => (
+              <p
+                key={user.value}
+                className="text-gray-700 text-base border border-current rounded mx-2 my-1 py-2 px-2 font-bold"
+              >
+                {user.label}
+              </p>
+            ))}
           </div>
         </div>
-        <div className="mb-4">
-          <button
-            className="bg-green-300 hover:bg-orange-400 active:bg-orange-500 focus:outline-none focus:ring focus:ring-green-900 hover:shadow-md shadow border border-gray-500 hover:border-transparent font-bold py-2 px-4 rounded hover:text-white"
-            onClick={handleRecurrenceClick}
-          >
-            Recurrence
-          </button>
-        </div>
-
+        
         {/* Buttons for saving and canceling */}
         <div className="flex items-center justify-between">
           <button

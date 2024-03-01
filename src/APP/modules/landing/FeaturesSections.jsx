@@ -26,7 +26,7 @@ const FeaturesSections = () => {
           <div className="mt-16 bg-gray-100 rounded-lg p-5">
             <div className="flex items-center mb-2">
               <h1 className="ml-0 p-3 bg-green-900 text-white">02</h1>
-              <h1 className="p-3 bg-gradient-to-r from-green-300 to-green-500 w-72 ">Task Manager</h1>
+              <h1 className="p-3 bg-gradient-to-r from-green-300 to-green-500 w-72 ">Share Calendar</h1>
             </div>
             <p className="p-6  pb-20 italic">
               A "Share calender" allows users to grant selective access for seamless collaboration, ensuring efficient planning and communication while maintaining privacy through customizable controls.

@@ -25,7 +25,7 @@ function EditModal({ closeModal, userInfo }) {
 
   const [name, setName] = useState(userInfo?.name || '');
   const [about, setAbout] = useState(userInfo?.about || '');
-  const [phone, setPhone] = useState(userInfo?.phone || '');
+  const [phone_number, setPhone] = useState(userInfo?.phone_number || '');
   const [profession, setProfession] = useState(userInfo?.profession || '');
   const [errMsg, setErrMsg] = useState('');
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
@@ -34,9 +34,12 @@ function EditModal({ closeModal, userInfo }) {
     try {
       // Directly retrieve the accessToken from localStorage
       const accessToken = localStorage.getItem("accessToken");
+
+      console.log("Phone Number:", phone_number);
+
   
       // Include the Authorization header manually in the request
-      const response = await axiosPrivate.patch(PROFILE_URL, JSON.stringify({ name, about, phone, profession }), {
+      const response = await axiosPrivate.patch(PROFILE_URL, JSON.stringify({ name, about, phone_number, profession }), {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}` // Manually include the accessToken
@@ -84,7 +87,7 @@ function EditModal({ closeModal, userInfo }) {
             <input
               type="tel"
               id="phone"
-              value={phone}
+              value={phone_number}
               onChange={(e) => setPhone(e.target.value)}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="Enter your Phone Number"

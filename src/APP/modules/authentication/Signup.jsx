@@ -100,15 +100,15 @@ function SignUpForm() {
 
      : (
                 <section>
-                    <div className="col-span-1 px-8 py-4 bg-gray-100 rounded-lg shadow-md">
+                    <div className="login col-span-1 px-8 py-4 bg-transparent  rounded-lg shadow-md">
                         <div className="text-center mb-8">
-                            <h1 className="text-4xl font-bold text-yellow-500">Sign Up</h1>
+                            <h1 className="text-4xl font-bold text-white italic">Sign Up</h1>
                             <div className="border-b border-black w-full mx-auto mt-4"></div>
                             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                         </div>
                         <form action="#" className="space-y-8">
                             <div className="form-control">
-                                <label htmlFor="name" className="mt-4 block text-base font-medium text-gray-700">
+                                <label htmlFor="name" className="mt-4 block text-base font-medium text-white">
                                     Name
                                 </label>
                                 <div className="relative">
@@ -125,7 +125,7 @@ function SignUpForm() {
                                         aria-describedby="uidnote"
                                         onFocus={() => setNameFocus(true)}
                                         onBlur={() => setNameFocus(false)}
-                                        className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                        className="w-full italic rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                                     />
                                     <p id="uidnote" className={nameFocus && name && !validName ? "instructions" : "offscreen"}>
                                         <FontAwesomeIcon icon={faInfoCircle} />
@@ -134,7 +134,7 @@ function SignUpForm() {
                                         Letters, numbers, underscores, hyphens allowed.
                                     </p>
                                 </div>
-                                <label htmlFor="email" className="mt-4 block text-base font-medium text-gray-700">
+                                <label htmlFor="email" className="mt-4 block text-base font-medium text-white">
                                     Enter your Email
                                 </label>
                                 <div className="relative ">
@@ -151,7 +151,7 @@ function SignUpForm() {
                                         aria-describedby="uidnote"
                                         onFocus={() => setEmailFocus(true)}
                                         onBlur={() => setEmailFocus(false)}
-                                        className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                        className="w-full italic rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                                     />
                                     <p id="uidnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
                                         <FontAwesomeIcon icon={faInfoCircle} />
@@ -159,7 +159,7 @@ function SignUpForm() {
                                     </p>
                                 </div>
                             </div>
-                            <label htmlFor="password" className="mt-4 block text-base font-medium text-gray-700">
+                            <label htmlFor="password" className="mt-4 block text-base font-medium text-white">
                                 Enter your password
                             </label>
                             <div className="relative">
@@ -174,7 +174,7 @@ function SignUpForm() {
                                     aria-describedby="pwdnote"
                                     onFocus={() => setPwdFocus(true)}
                                     onBlur={() => setPwdFocus(false)}
-                                    className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                    className="w-full italic rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                                 />
                                 <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
                                     <FontAwesomeIcon icon={faInfoCircle} />
@@ -183,7 +183,7 @@ function SignUpForm() {
                                     Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
                                 </p>
                             </div>
-                            <label htmlFor="confirmPassword" className="mt-4 block text-base font-medium text-gray-700">
+                            <label htmlFor="confirmPassword" className="mt-4 block text-base font-medium text-white">
                                 Confirm password
                             </label>
                             <div className="relative">
@@ -198,7 +198,7 @@ function SignUpForm() {
                                     aria-describedby="confirmnote"
                                     onFocus={() => setMatchFocus(true)}
                                     onBlur={() => setMatchFocus(false)}
-                                    className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                    className="w-full italic rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                                 />
                                 <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                                     <FontAwesomeIcon icon={faInfoCircle} />
@@ -209,7 +209,7 @@ function SignUpForm() {
                                 type="submit"
                                 onClick={handleSignUp}
                                 disabled={!validName || !validPwd || !validMatch}
-                                className="btn bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  w-full rounded-md py-2 px-4 text-center text-base font-medium shadow-sm hover:from-pink-500 hover:to-yellow-500 active:from-yellow-400 active:to-pink-400  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                className="btn bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  w-full rounded-md py-2 px-4 text-center text-base font-medium shadow-sm hover:from-pink-500 hover:to-yellow-500 active:from-yellow-400 active:to-pink-400  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 hover:text-white"
                             >
                                 Sign up
                             </button>
@@ -220,7 +220,7 @@ function SignUpForm() {
                             </div>
                             <div className="grid space-y-4  ">
                                 <a href="#" className="text-sm text-center text-blue-600 hover:underline">
-                                    <Link to="/authentication">Already have an account? Log in</Link>
+                                    <Link to="/authentication" className='italic'>Already have an account? Log in</Link>
                                 </a>
                             </div>
                         </form>
