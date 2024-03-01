@@ -10,7 +10,7 @@ const HeroSection = () => {
   return (
     <div className="bg-green-100 flex h-screen">
       <div className="w-2/6 h-80 mt-44 ml-64 ">
-        <h1 className="text-7xl pb-6 italic">
+        <h1 className="text-7xl pb-6 animate-pulse text-green-900 italic">
           Stay Connected, Stay Organized with Ease!
         </h1>
         <h3 className="text-2xl text-gray-500">
