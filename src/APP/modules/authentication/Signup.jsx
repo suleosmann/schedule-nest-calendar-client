@@ -102,7 +102,7 @@ function SignUpForm() {
                 <section>
                     <div className="login col-span-1 px-8 py-4 bg-transparent  rounded-lg shadow-md">
                         <div className="text-center mb-8">
-                            <h1 className="text-4xl font-bold text-white">Sign Up</h1>
+                            <h1 className="text-4xl font-bold text-white italic">Sign Up</h1>
                             <div className="border-b border-black w-full mx-auto mt-4"></div>
                             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                         </div>
@@ -125,7 +125,7 @@ function SignUpForm() {
                                         aria-describedby="uidnote"
                                         onFocus={() => setNameFocus(true)}
                                         onBlur={() => setNameFocus(false)}
-                                        className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                        className="w-full italic rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                                     />
                                     <p id="uidnote" className={nameFocus && name && !validName ? "instructions" : "offscreen"}>
                                         <FontAwesomeIcon icon={faInfoCircle} />
@@ -151,7 +151,7 @@ function SignUpForm() {
                                         aria-describedby="uidnote"
                                         onFocus={() => setEmailFocus(true)}
                                         onBlur={() => setEmailFocus(false)}
-                                        className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                        className="w-full italic rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                                     />
                                     <p id="uidnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
                                         <FontAwesomeIcon icon={faInfoCircle} />
@@ -174,7 +174,7 @@ function SignUpForm() {
                                     aria-describedby="pwdnote"
                                     onFocus={() => setPwdFocus(true)}
                                     onBlur={() => setPwdFocus(false)}
-                                    className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                    className="w-full italic rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                                 />
                                 <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
                                     <FontAwesomeIcon icon={faInfoCircle} />
@@ -198,7 +198,7 @@ function SignUpForm() {
                                     aria-describedby="confirmnote"
                                     onFocus={() => setMatchFocus(true)}
                                     onBlur={() => setMatchFocus(false)}
-                                    className="w-full rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                    className="w-full italic rounded-md border border-gray-300 py-2 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                                 />
                                 <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                                     <FontAwesomeIcon icon={faInfoCircle} />
@@ -220,7 +220,7 @@ function SignUpForm() {
                             </div>
                             <div className="grid space-y-4  ">
                                 <a href="#" className="text-sm text-center text-blue-600 hover:underline">
-                                    <Link to="/authentication">Already have an account? Log in</Link>
+                                    <Link to="/authentication" className='italic'>Already have an account? Log in</Link>
                                 </a>
                             </div>
                         </form>
