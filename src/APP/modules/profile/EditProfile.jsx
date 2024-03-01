@@ -82,17 +82,7 @@ function EditModal({ closeModal, userInfo }) {
               placeholder="Enter your Name"
             />
           </div>
-          <div className="mb-4">
-            <label htmlFor="phone" className="block text-gray-700 text-sm font-bold mb-2">Phone</label>
-            <input
-              type="tel"
-              id="phone"
-              value={phone_number}
-              onChange={(e) => setPhone(e.target.value)}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="Enter your Phone Number"
-            />
-          </div>
+         
           <div className="mb-4">
             <label htmlFor="profession" className="block text-gray-700 text-sm font-bold mb-2">Profession</label>
             <input

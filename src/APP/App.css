@@ -23,6 +23,12 @@
 span{
   font-family: 'poppins';
 }
+.rbc-event{
+    background-color: #84E1BC;
+}
+.rbc-event-content{
+    color: #181818;
+}
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 

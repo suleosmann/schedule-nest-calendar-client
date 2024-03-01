@@ -1,11 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EditEventModal from "./EditEventModal";
 import DeleteEventModal from "./../../components/NotifyModal";
+import useAxios from "./../../api/axios";
 
 function EventDetailsModal({ event, closeModal }) {
+  
+
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [attendees, setAttendees] = useState([]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const fetchUsers = async () => {
+      const accessToken = localStorage.getItem("accessToken");
+      const id = event.id;
+      try {
+        const response = await useAxios.get(`/attendees/event_guests/${id}`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          signal: controller.signal,
+        });
+        console.error(response.data);
+        setAttendees(response.data.attendees);
+        
+      } catch (error) {
+        console.error("Error fetching Users", error);
+      }
+      console.error(attendees);
+    };
+
+    fetchUsers();
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   const openEditModal = () => {
     setIsEditModalOpen(true);

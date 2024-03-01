@@ -189,8 +189,8 @@ function CreateEventModal({ closeModal }) {
 
   //--------------------------------------saving event to api ------------------------------------------
   const handleSave = async () => {
-    const start_time = formatDateTimedb(date, startTime);
-    const end_time = formatDateTimedb(date, endTime);
+    const start_time = formatDateTimedb(currentDate, startTime);
+    const end_time = formatDateTimedb(currentDate, endTime);
     console.log(
       "title: ",
       title,

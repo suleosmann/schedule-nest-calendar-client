@@ -4,10 +4,12 @@ import { useRef, useState, useEffect } from "react";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from './../../api/axios';
+import useNavigation from '../../hooks/useNavigation'
 
 export default function updatePwd() {
   const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
   const REGISTER_URL = '/auth/update_password';
+  const navigate = useNavigation(); // Use the custom hook
 
    const userRef = useRef();
     const errRef = useRef();
@@ -47,9 +49,11 @@ export default function updatePwd() {
             setErrMsg("Invalid Entry");
             return;
         }
+        const confirm_new_password = password;
+        const new_password = password;
         try {
             const response = await axios.patch(REGISTER_URL,
-                JSON.stringify({ email, password }),
+                JSON.stringify({ email, new_password, confirm_new_password }),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true

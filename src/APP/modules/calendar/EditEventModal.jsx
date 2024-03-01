@@ -10,8 +10,8 @@ import SuccessModal from "../../components/NotifyModal";
 import ErrorModal from "../../components/NotifyModal";
 
 function CreateEventModal({ event, closeModal }) {
-  const id = event.id
-  const POSTEVENT_URL = `/manage_event/${id}`;
+  const id = event.id;
+  const POSTEVENT_URL = `events/manage_event/${id}`;
   const GET_USERS_URL = "/users/get_all_users";
 
   const axiosPrivate = useAxiosPrivate();
@@ -20,12 +20,12 @@ function CreateEventModal({ event, closeModal }) {
   const [showRecurrenceModal, setShowRecurrenceModal] = useState(false);
 
   //----------------------------variables in create event modal --------------------------------
-  const [title, setTitle] = useState(event?.title || '');
-  const [description, setDescription] = useState(event?.description || '');
+  const [title, setTitle] = useState(event?.title || "");
+  const [description, setDescription] = useState(event?.description || "");
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const [location, setLocation] = useState(event?.description || '');
+  const [location, setLocation] = useState(event?.description || "");
   const [attendees, setAttendees] = useState([]);
 
   //--------------------------processed variables to be sent -----------------------------------
@@ -85,7 +85,7 @@ function CreateEventModal({ event, closeModal }) {
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
 
   const [currentDate, setCurrentDate] = useState(
-    event?.start.toString().slice(0,16) || new Date().toISOString().slice(0, 10)
+    formatDate(event?.start) || new Date().toISOString().slice(0, 10)
   );
 
   //--------------------------------------successModal ------------------------------------------
@@ -142,7 +142,6 @@ function CreateEventModal({ event, closeModal }) {
       setAttendees(newAttendees);
       return newSelectedUsers;
     });
-    console.log(attendee);
   };
 
   //--------------------------------------function to fomat date for database--------------------------
@@ -150,6 +149,15 @@ function CreateEventModal({ event, closeModal }) {
     const [year, month, day] = date.split("-");
     const [hours, minutes] = time.split(":");
     return `${year}-${month}-${day}T${hours}:${minutes}:00`;
+  }
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = ("0" + (date.getMonth() + 1)).slice(-2); // Add leading zero if needed
+    const day = ("0" + date.getDate()).slice(-2); // Add leading zero if needed
+
+    return `${year}-${month}-${day}`;
   }
 
   //---------------------------------------function for recurrence --------------------------------------
@@ -190,8 +198,8 @@ function CreateEventModal({ event, closeModal }) {
 
   //--------------------------------------saving event to api ------------------------------------------
   const handleSave = async () => {
-    const start_time = formatDateTimedb(date, startTime);
-    const end_time = formatDateTimedb(date, endTime);
+    const start_time = formatDateTimedb(currentDate, startTime);
+    const end_time = formatDateTimedb(currentDate, endTime);
     console.log(
       "title: ",
       title,
@@ -219,7 +227,7 @@ function CreateEventModal({ event, closeModal }) {
 
     try {
       const accessToken = localStorage.getItem("accessToken");
-      const response = await axiosPrivate.post(
+      const response = await axiosPrivate.put(
         POSTEVENT_URL,
         JSON.stringify({
           title,
@@ -380,7 +388,7 @@ function CreateEventModal({ event, closeModal }) {
             ))}
           </div>
         </div>
-        
+
         {/* Buttons for saving and canceling */}
         <div className="flex items-center justify-between">
           <button
