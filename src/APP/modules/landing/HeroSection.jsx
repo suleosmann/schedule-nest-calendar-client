@@ -8,9 +8,9 @@ const HeroSection = () => {
   const navigate = useNavigation(); // Initialize the navigate function from the custom hook
 
   return (
-    <div className="flex mb-64">
-      <div className="w-2/6 h-80 mt-32 ml-64 pt-32 mb-36">
-        <h1 className="text-6xl pb-6 italic">
+    <div className="flex mb-64 ">
+      <div className="w-2/6 h-80 mt-32 ml-64 pt-40 mb-36 ">
+        <h1 className="text-7xl pb-6 italic animate-pulse bg-green-400 bg-clip-text text-transparent">
           Stay Connected, Stay Organized with Ease!
         </h1>
         <h3 className="text-gray-500">
