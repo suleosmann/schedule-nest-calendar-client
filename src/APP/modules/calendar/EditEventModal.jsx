@@ -10,7 +10,8 @@ import SuccessModal from "../../components/NotifyModal";
 import ErrorModal from "../../components/NotifyModal";
 
 function CreateEventModal({ event, closeModal }) {
-  const POSTEVENT_URL = "/events/create_event";
+  const id = event.id
+  const POSTEVENT_URL = `/manage_event/${id}`;
   const GET_USERS_URL = "/users/get_all_users";
 
   const axiosPrivate = useAxiosPrivate();

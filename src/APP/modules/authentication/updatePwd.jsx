@@ -48,7 +48,7 @@ export default function updatePwd() {
             return;
         }
         try {
-            const response = await axios.post(REGISTER_URL,
+            const response = await axios.patch(REGISTER_URL,
                 JSON.stringify({ email, password }),
                 {
                     headers: { 'Content-Type': 'application/json' },
