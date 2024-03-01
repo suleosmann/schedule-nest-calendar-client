@@ -81,16 +81,16 @@ export default function updatePwd() {
         navigate('/authentication')
       : (
           <section>
-          <div className="col-span-1 px-8 py-4 bg-gray-100 rounded-lg shadow-md">
+          <div className="login col-span-1 px-8 py-4 bg-gray-100 rounded-lg shadow-md bg-transparent">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-yellow-500">Update Password</h1>
+            <h1 className="text-4xl font-bold text-white">Update Password</h1>
             <div className="border-b border-black w-full mx-auto mt-4"></div>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
           </div>
           <form action="#" className="space-y-8">
                   <div className="form-control">
                   <div className="relative">
-                    <label for="email" className="mt-4 block text-base font-medium text-gray-700">
+                    <label for="email" className="mt-4 block text-base font-medium text-white">
                       Enter your Email
                     </label>
                     <div className="relative ">
@@ -105,7 +105,7 @@ export default function updatePwd() {
                     </div>
                   </div>
                   
-                    <label for="password" className="mt-4 block text-base font-medium text-gray-700">
+                    <label for="password" className="mt-4 block text-base font-medium text-white">
                       Enter your password
                     </label>
                     <div className="relative">
@@ -149,7 +149,7 @@ export default function updatePwd() {
                   </div>
                   <button type="submit" onClick={handleUpdatepwd}
                     disabled={!validPwd || !validMatch ? true : false}
-                    className="btn bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  w-full rounded-md py-2 px-4 text-center text-base font-medium shadow-sm hover:from-pink-500 hover:to-yellow-500 active:from-yellow-400 active:to-pink-400  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    className="btn bg-gradient-to-r from-green-500 from-10% via-green-500 via-30% to-emerald-500 to-90%  w-full rounded-md py-2 px-4 text-center text-base font-medium shadow-sm hover:from-yellow-300 hover:to-orange-400 active:from-yellow-400 active:to-orange-400  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 hover:text-white"
                   > Update Password
                   </button>
                   <div className="flex items-center justify-between">
@@ -158,7 +158,7 @@ export default function updatePwd() {
                     <hr className="w-full bg-gray-200" />
                   </div>
                   <div className="grid space-y-4  ">
-                    <a href="#" className="text-sm text-center text-blue-600 hover:underline">
+                    <a href="#" className="text-sm text-center text-white hover:underline hover:text-yellow-400">
                       <Link to="/authentication">Already have an account? Log in</Link>
                     </a>
                   </div>

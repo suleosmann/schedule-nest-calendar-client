@@ -112,7 +112,7 @@ function Login() {
         </div>
         
         <button type="submit"  onClick={handleLogin}
-          className="btn bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  w-full rounded-md py-2 px-4 text-center text-base font-medium shadow-sm hover:from-pink-500 hover:to-yellow-500 active:from-yellow-400 active:to-pink-400  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 hover:text-white"
+          className="btn bg-gradient-to-r from-green-500 from-10% via-green-500 via-30% to-emerald-500 to-90%  w-full rounded-md py-2 px-4 text-center text-base font-medium shadow-sm hover:from-yellow-300 hover:to-orange-400 active:from-yellow-400 active:to-orange-400  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 hover:text-white"
         >
           Log in
         </button>
@@ -122,10 +122,10 @@ function Login() {
           <hr className="w-full bg-gray-200" />
         </div>
         <div className="grid space-y-4  ">
-          <Link to="updatepwd" className="text-sm italic text-center text-blue-600 hover:underline">
+          <Link to="updatepwd" className="text-sm italic text-center text-white hover:underline hover:text-yellow-400">
             Forgot Password ?
           </Link>
-          <Link to="signup" className="text-sm italic text-center text-blue-600 hover:underline">
+          <Link to="signup" className="text-sm italic text-center text-white hover:underline hover:text-yellow-400">
             Don't have an account? Sign Up
           </Link>
         </div>
